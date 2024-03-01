@@ -99,11 +99,24 @@ section:nth-of-type(1) {
 	top: 50%;
     /* size */
 	transform: scale(2);
+    display: none;
 }
 
 section:nth-of-type(1) div::before {
 	animation: explosion 5s ease-in-out infinite;
     background-color: green;
+}
+
+#toggle {
+    display: none;
+}
+
+label{
+    color: green;
+}
+
+#toggle:checked + section:nth-of-type(1) {
+    display: block;
 }
 
 section:nth-of-type(2) {
