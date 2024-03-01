@@ -107,15 +107,15 @@ section:nth-of-type(1) div::before {
     background-color: green;
 }
 
-#toggle {
+/* input[type="checkbox"] {
     display: none;
-}
+} */
 
 label{
     color: green;
 }
 
-#toggle:checked + section:nth-of-type(1) {
+input[type="checkbox"]:checked + section:nth-of-type(1) {
     display: block;
 }
 
