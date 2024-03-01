@@ -18,7 +18,7 @@ section {
 	position: absolute;
 }
 
-/* The line for the explosion effect is the following: */
+/* The line for the explosion effect is the following */
 div {
 	position: absolute;
 	/* left: -2px; */
@@ -68,7 +68,7 @@ div:before {
 }
 
 /* explosion animation */
-@keyframes explosion {
+@keyframes firework {
 	0% {
 		top: 100%;
 	}
@@ -76,6 +76,7 @@ div:before {
 		top: -75%;
 	}
 }
+
 /* 
 @property --rotate {
     syntax: '<angle>';
@@ -93,7 +94,7 @@ section:nth-of-type(1) {
 }
 
 section:nth-of-type(1) div::before {
-	animation: explosion 5s ease-in-out infinite;
+	animation: firework 5s ease-in-out infinite;
     background-color: green;
 }
 
@@ -116,7 +117,7 @@ section:nth-of-type(2) {
 }
 section:nth-of-type(2) div:before {
     /* time for the animation */
-	animation: explosion 4s .6s ease-in-out infinite;
+	animation: firework 4s .6s ease-in-out infinite;
     /* Diffrent color for every explosion  */
     background-color: #f5cf52;
 }
@@ -127,7 +128,7 @@ section:nth-of-type(3) {
 	transform: scale(.8);
 }
 section:nth-of-type(3) div:before {
-	animation: explosion 4s .4s ease-in-out infinite;
+	animation: firework 4s .4s ease-in-out infinite;
     background-color: royalblue;
 }
 
@@ -137,7 +138,7 @@ section:nth-of-type(4) {
 	transform: scale(.4);
 }
 section:nth-of-type(4) div:before {
-	animation: explosion 2s .4s ease-in-out infinite;
+	animation: firework 2s .4s ease-in-out infinite;
     background-color: red;
 }
 
