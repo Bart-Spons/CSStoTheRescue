@@ -21,13 +21,12 @@ section {
 /* The line for the explosion effect is the following */
 div {
 	position: absolute;
-	/* left: -2px; */
 	bottom: 0;
 	width: 0.25em;
 	height: 12em;
 	transform-origin: 50% 100%;
 	/* background-color: rgba(0,0,0,.2); */
-    background-color: red;
+    /* background-color: red; */
 	overflow: hidden;
 }
 
@@ -65,7 +64,6 @@ div:before {
 	right: 0;
 	top: 100%;
 	height: 2em;
-	
 }
 
 /* explosion animation */
@@ -85,6 +83,31 @@ div:before {
     inherits: false;
 } */
 
+
+
+
+
+input {
+    display: none;
+}
+
+label:first-of-type{
+    color: white;
+	padding: 1em;
+	bottom: 1em;
+	position: absolute;
+	border-radius: 2em;
+}
+
+label:first-of-type{
+	background-color: green;
+}
+
+label:has( input[type="checkbox"]:checked ) + section:nth-of-type(1) {
+    display: block;
+}
+
+
 section:nth-of-type(1) {
     /* position */
 	left: 50%;
@@ -94,28 +117,19 @@ section:nth-of-type(1) {
     display: none;
 }
 
-section:nth-of-type(1) div::before {
+section:nth-of-type(1) div:before {
 	animation: firework 5s ease-in-out infinite;
     background-color: green;
 }
 
-/* input[type="checkbox"] {
-    display: none;
-} */
-
-label{
-    color: green;
-}
-
-input[type="checkbox"]:checked + section:nth-of-type(1) {
-    display: block;
-}
 
 section:nth-of-type(2) {
 	left: 10%;
 	top: 10%;
 	transform: scale(.7);
 }
+
+
 section:nth-of-type(2) div:before {
     /* time for the animation */
 	animation: firework 4s .6s ease-in-out infinite;
@@ -141,5 +155,32 @@ section:nth-of-type(4) {
 section:nth-of-type(4) div:before {
 	animation: firework 2s .4s ease-in-out infinite;
     background-color: red;
+}
+
+section:nth-of-type(5) {
+	background-image:
+		conic-gradient(from var(--angle, 0deg), crimson,dodgerblue,crimson);
+	
+	animation:draaien 1s linear infinite;
+	height: 10em;
+	width: 10em;
+	bottom: 0;
+	left: 0;
+	border-radius: 100%;
+}
+
+@keyframes draaien {
+	0% {
+		--angle:0deg;
+	}
+	100% {
+		--angle:360deg;
+	}
+}
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 
