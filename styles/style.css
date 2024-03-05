@@ -87,11 +87,11 @@ div:before {
 
 
 
-input {
+/* input {
     display: none;
-}
+} */
 
-label:first-of-type{
+label:nth-of-type(1){
     color: white;
 	padding: 1em;
 	bottom: 1em;
@@ -99,14 +99,25 @@ label:first-of-type{
 	border-radius: 2em;
 }
 
+label:nth-of-type(2){
+	background-color: yellow;
+	padding: 1em;
+	bottom: 1em;
+	right: 3em;
+	position: absolute;
+}
+
 label:first-of-type{
 	background-color: green;
 }
 
-label:has( input[type="checkbox"]:checked ) + section:nth-of-type(1) {
+label:nth-of-type(1):has( input[type="checkbox"]:checked ) + section:nth-of-type(1) {
     display: block;
 }
 
+label:nth-of-type(2):has( input[type="checkbox"]:checked ) + section:nth-of-type(2) {
+    display: block;
+}
 
 section:nth-of-type(1) {
     /* position */
@@ -122,13 +133,12 @@ section:nth-of-type(1) div:before {
     background-color: green;
 }
 
-
 section:nth-of-type(2) {
 	left: 10%;
 	top: 10%;
 	transform: scale(.7);
+	display: none;
 }
-
 
 section:nth-of-type(2) div:before {
     /* time for the animation */
