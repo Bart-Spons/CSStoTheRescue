@@ -29,6 +29,10 @@ label {
   border-radius: 2em; */
 }
 
+a {
+  text-decoration: none;
+}
+
 h1 {
   display: none;
 }
@@ -87,6 +91,16 @@ div:before {
   border-radius: 40%;
 }
 
+div:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 2em;
+  border-radius: 40%;
+}
+
 /* 
 @property --rotate {
     syntax: '<angle>';
@@ -98,52 +112,20 @@ input {
   display: none;
 }
 
-label:nth-of-type(1) {
-  color: white;
-  padding: 1em;
-  bottom: 1em;
-  position: absolute;
-  border-radius: 2em;
-}
-
-label:nth-of-type(2) {
-  background-color: yellow;
-  padding: 1em;
-  bottom: 1em;
-  right: 3em;
-  position: absolute;
-  border-radius: 2em;
-}
-
-label:first-of-type {
-  background-color: green;
-  position: absolute;
-  left: 3em;
-}
-
-label:nth-of-type(1):has(input[type="checkbox"]:checked)
-  + section:nth-of-type(1) {
-  display: block;
-}
-
-label:nth-of-type(2):has(input[type="checkbox"]:checked)
-  + section:nth-of-type(2) {
-  display: block;
-}
-
+/* labels */
 /* light mode */
-body:has(label:nth-of-type(3) input[type="checkbox"]:checked) {
+body:has(label:nth-of-type(1) input[type="checkbox"]:checked) {
   background-color: white;
   color: black;
 }
 
-body:has(label:nth-of-type(4) input[type="checkbox"]:checked)
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
   > label:nth-of-type(2) {
   color: black;
 }
 
 /* Dark mode */
-body:has(label:nth-of-type(4) input[type="checkbox"]:checked) {
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked) {
   background-color: black;
   color: white;
 }
@@ -158,9 +140,21 @@ section:nth-of-type(1) {
 }
 
 section:nth-of-type(1) div:before {
-  animation: firework 5s ease-in-out infinite;
+  animation: firework 2s ease-in-out infinite;
   background-color: green;
 }
+
+section:nth-of-type(1) div::after {
+  animation: sparkles 0.6s ease-in-out infinite;
+  background-image: linear-gradient(
+    90deg in okLCH longer hue,
+    crimson,
+    dodgerblue
+  );
+  animation-delay: 0.5s;
+}
+
+/* geel */
 
 section:nth-of-type(2) {
   left: 72.5%;
@@ -171,8 +165,15 @@ section:nth-of-type(2) {
 
 section:nth-of-type(2) div:before {
   /* time for the animation */
-  animation: firework 4s 1s ease-in-out infinite;
+  animation: firework 2s 1s ease-in-out infinite;
   /* Diffrent color for every explosion  */
+  background-color: #f5cf52;
+}
+
+section:nth-of-type(2) div::after {
+  /* height: 5em; */
+  animation: sparkles 1s 1s ease-in-out infinite;
+  /* background-image: url("../images/sparkles.gif"); */
   background-color: #f5cf52;
 }
 
@@ -180,12 +181,19 @@ section:nth-of-type(3) {
   left: 80%;
   top: 15%;
   transform: scale(0.8);
+  display: none;
 }
 section:nth-of-type(3) div:before {
   animation: firework 6s ease-in-out infinite;
   background-color: royalblue;
   /* box-shadow: blue 0 0 50px; */
   animation-delay: calc(var(--walking) + 0.75s);
+}
+
+section:nth-of-type(3) div::after {
+  animation: sparkles 2s 1s ease-in-out infinite;
+  background-color: blue;
+  animation-delay: 0.5s;
 }
 
 section:nth-of-type(4) {
@@ -242,17 +250,18 @@ article:nth-of-type(2) {
 }
 
 section:nth-of-type(5) {
-  left: 70%;
-  top: 20%;
+  left: 80%;
+  top: 15%;
   transform: scale(0.9);
+  display: none;
 }
 
 section:nth-of-type(5) div:before {
   /* time for the animation */
-  animation: firework 4s ease-in-out;
+  animation: firework 4s ease-in-out infinite;
   /* Diffrent color for every explosion  */
-  background-color: #f5cf52;
-  animation-delay: calc(var(--walking) + 1.5s);
+  background-color: orange;
+  /* animation-delay: calc(var(--walking) + 0.85s); */
 }
 
 section:nth-of-type(6) {
@@ -270,6 +279,75 @@ section:nth-of-type(6) {
   top: 0;
   left: 0;
   border-radius: 100%;
+}
+
+section:nth-of-type(2) {
+  left: 70%;
+  top: 20%;
+  transform: scale(1);
+  display: none;
+}
+
+section:nth-of-type(2) div:before {
+  /* time for the animation */
+  animation: firework 2s 1s ease-in-out infinite;
+  /* Diffrent color for every explosion  */
+  background-color: #f5cf52;
+  animation-delay: calc(var(--walking) + 1.5s);
+}
+
+section:nth-of-type(2) div::after {
+  animation: sparkles 2s 1.5s ease-in-out infinite;
+  /* background-image: url("../images/sparkles.gif"); */
+  background-color: hsl(120 100% 50%);
+  height: 1em;
+}
+
+section:nth-of-type(4) {
+  left: 85%;
+  top: 75%;
+  transform: scale(0.8);
+  /* display: none; */
+}
+
+section:nth-of-type(7) {
+  left: 85%;
+  top: 25%;
+  transform: scale(1);
+  display: none;
+}
+
+section:nth-of-type(7) div:before {
+  animation: firework 1s 2s ease-in-out infinite;
+  background-color: purple;
+  /* box-shadow: blue 0 0 50px; */
+  /* animation-delay: calc(var(--walking) + 0.75s); */
+}
+
+section:nth-of-type(7) div::after {
+  animation: sparkles 1s 1.5s ease-in-out infinite;
+  background-color: rebeccapurple;
+  /* animation-delay: 0.5s; */
+}
+
+section:nth-of-type(8) {
+  left: 85%;
+  top: 25%;
+  transform: scale(0.8);
+  display: none;
+}
+
+section:nth-of-type(8) div:before {
+  animation: firework 1s 2s ease-in-out infinite;
+  background-color: red;
+  /* box-shadow: blue 0 0 50px; */
+  /* animation-delay: calc(var(--walking) + 0.75s); */
+}
+
+section:nth-of-type(8) div::after {
+  animation: sparkles 1s 1.5s ease-in-out infinite;
+  background-color: red;
+  /* animation-delay: 0.5s; */
 }
 
 @keyframes draaien {
@@ -357,4 +435,163 @@ section:nth-of-type(6) {
 article img {
   width: 12em;
   height: auto;
+}
+
+/* labels */
+
+/* label 1 */
+
+label:first-of-type {
+  padding: 1em;
+  border-radius: 2em;
+  left: 3em;
+  bottom: 9em;
+  position: absolute;
+  background-color: whitesmoke;
+}
+
+/* go crazy label input*/
+
+/* go crazy label input*/
+/* als deze aan is gaan alle div's af */
+
+/* label 2*/
+
+label:nth-of-type(2) {
+  color: white;
+  padding: 1em;
+  bottom: 5em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+  background-color: black;
+}
+
+/* label 3 */
+
+/* als deze aan is gaan alle div's af */
+label:nth-of-type(3):has(input[type="checkbox"]:checked) ~ section {
+  /* animation: firework 2s ease-in-out infinite; */
+  display: block;
+}
+
+label:nth-of-type(3) {
+  background-color: darkkhaki;
+  padding: 1em;
+  bottom: 17em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* label 4 */
+
+label:nth-of-type(4):has(input[type="checkbox"]:checked) ~ section {
+  animation: firework 15s ease-in-out infinite;
+  display: block;
+}
+
+label:nth-of-type(4) {
+  background-color: grey;
+  padding: 1em;
+  bottom: 21em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* label 5 */
+
+/* groen */
+label:nth-of-type(5):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(1) {
+  display: block;
+}
+
+label:nth-of-type(5) {
+  background-color: green;
+  padding: 1em;
+  bottom: 25em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* label 6 */
+
+label:nth-of-type(6) {
+  background-color: yellow;
+  padding: 1em;
+  bottom: 13em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* geel */
+label:nth-of-type(6):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(2) {
+  display: block;
+}
+
+/* label 7 */
+
+label:nth-of-type(7) {
+  background-color: blue;
+  padding: 1em;
+  bottom: 29em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+label:nth-of-type(7):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(3) {
+  display: block;
+}
+
+/* label 8 */
+
+label:nth-of-type(8) {
+  background-color: orange;
+  padding: 1em;
+  bottom: 33em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+label:nth-of-type(8):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(5) {
+  display: block;
+}
+/* label 9 */
+
+label:nth-of-type(9) {
+  background-color: purple;
+  padding: 1em;
+  bottom: 1em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+label:nth-of-type(9):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(7) {
+  display: block;
+}
+/* label 10 */
+
+label:nth-of-type(10):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(8) {
+  display: block;
+}
+
+label:nth-of-type(10) {
+  background-color: red;
+  padding: 1em;
+  bottom: 37em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
 }
