@@ -13,8 +13,12 @@ body {
   justify-content: center;
   align-items: center;
   /* dark mode */
-  background-color: rgba(0, 0, 0, 0.746);
+  /* background-color: rgba(0, 0, 0, 0.746); */
+  background-image: url("../images/landschap.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
+
 h1 {
   display: none;
 }
@@ -155,42 +159,21 @@ section:nth-of-type(3) div:before {
 }
 
 section:nth-of-type(4) {
+  appearance: none;
   left: 77%;
   top: 75%;
   transform: scale(1);
   /* animation: move-firework 2s ease-in-out infinite alternate; */
+  background-image: url("../images/pijl.png");
+  background-size: contain;
+  width: 5rem;
+  height: 5rem;
   animation: move-firework ease-in-out alternate;
   animation-delay: calc(var(--walking));
   animation-duration: var(--rocket-up);
   animation-fill-mode: both;
-
-  background: rgb(255 255 255 / 1);
-  outline: 2px solid #f09;
+  /* outline: 2px solid #f09; */
   outline-offset: 5px;
-}
-
-@keyframes move-firework {
-  to {
-    translate: 0px -28rem;
-  }
-}
-
-@keyframes arrow {
-  from {
-    transform: translateY(25em);
-  }
-  to {
-    transform: translateY(-25em);
-  }
-}
-
-@keyframes walk {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(54em);
-  }
 }
 
 article:nth-of-type(1) {
@@ -207,14 +190,14 @@ article:nth-of-type(2) {
 #pijl {
   width: 1em;
   height: 1em;
-  background-color: white;
+  /* background-color: white; */
   animation: arrow 4s cubic-bezier(0.55, 0.09, 0.68, 0.53) infinite;
 }
 
 #man {
   width: 1em;
   height: 1em;
-  background-color: white;
+  /* background-color: white; */
   animation: walk cubic-bezier(0.55, 0.09, 0.68, 0.53);
   animation-duration: var(--walking);
   animation-fill-mode: both;
@@ -250,7 +233,7 @@ section:nth-of-type(6) {
     crimson
   );
 
-  animation: draaien 1s linear infinite;
+  animation: draaien 1s linear infinite, circleMove 4s ease-in-out infinite;
   height: 5em;
   width: 5em;
   bottom: 0;
@@ -287,6 +270,39 @@ section:nth-of-type(6) {
   }
 }
 
+@keyframes move-firework {
+  to {
+    translate: 0px -28rem;
+  }
+}
+
+@keyframes arrow {
+  from {
+    transform: translateY(25em);
+  }
+  to {
+    transform: translateY(-25em);
+  }
+}
+
+@keyframes circleMove {
+  from {
+    transform: translateY(10em);
+  }
+  to {
+    transform: translateY(-50em);
+  }
+}
+
+@keyframes walk {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50vw);
+  }
+}
+
 @property --angle {
   syntax: "<angle>";
   inherits: false;
@@ -296,3 +312,9 @@ section:nth-of-type(6) {
 /* Dark mode / light mode */
 
 /* Change theme */
+
+/* Make gif smaller */
+article img {
+  width: 12em;
+  height: auto;
+}
