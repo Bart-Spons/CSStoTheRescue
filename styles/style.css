@@ -1,5 +1,5 @@
 :root {
-  --walking: 2s;
+  --walking: 5s;
   --rocket-up: 3s;
   --explode: 3s;
 }
@@ -13,10 +13,20 @@ body {
   justify-content: center;
   align-items: center;
   /* dark mode */
-  /* background-color: rgba(0, 0, 0, 0.746); */
+  background-color: cadetblue;
   background-image: url("../images/landschap.png");
   background-repeat: no-repeat;
   background-size: cover;
+  transition: 0.5s ease;
+}
+
+/* Stijl voor de labels/radiobuttons */
+label {
+  cursor: pointer;
+  margin-right: 1em;
+  /* padding: 0.5em;
+  background-color: white;
+  border-radius: 2em; */
 }
 
 h1 {
@@ -106,6 +116,8 @@ label:nth-of-type(2) {
 
 label:first-of-type {
   background-color: green;
+  position: absolute;
+  left: 3em;
 }
 
 label:nth-of-type(1):has(input[type="checkbox"]:checked)
@@ -116,6 +128,18 @@ label:nth-of-type(1):has(input[type="checkbox"]:checked)
 label:nth-of-type(2):has(input[type="checkbox"]:checked)
   + section:nth-of-type(2) {
   display: block;
+}
+
+/* light mode */
+body:has(label:nth-of-type(3) input[type="checkbox"]:checked) {
+  background-color: white;
+  color: black;
+}
+
+/* Dark mode */
+body:has(label:nth-of-type(4) input[type="checkbox"]:checked) {
+  background-color: black;
+  color: white;
 }
 
 section:nth-of-type(1) {
@@ -147,15 +171,15 @@ section:nth-of-type(2) div:before {
 }
 
 section:nth-of-type(3) {
-  left: 70%;
-  top: 30%;
+  left: 80%;
+  top: 15%;
   transform: scale(0.8);
 }
 section:nth-of-type(3) div:before {
-  animation: firework 6s ease-in-out;
+  animation: firework 6s ease-in-out infinite;
   background-color: royalblue;
   /* box-shadow: blue 0 0 50px; */
-  animation-delay: calc(var(--walking) + var(--rocket-up));
+  animation-delay: calc(var(--walking) + 0.75s);
 }
 
 section:nth-of-type(4) {
@@ -169,11 +193,19 @@ section:nth-of-type(4) {
   width: 5rem;
   height: 5rem;
   animation: move-firework ease-in-out alternate;
-  animation-delay: calc(var(--walking));
+  animation-delay: calc(var(--walking) / 1.5);
   animation-duration: var(--rocket-up);
   animation-fill-mode: both;
   /* outline: 2px solid #f09; */
   outline-offset: 5px;
+}
+
+section:nth-of-type(4) div:before {
+  animation: firework ease-in-out;
+  /* animation: firework 5s 1s ease-in-out infinite; */
+  background-color: red;
+  animation-delay: calc(var(--walking) + var(--rocket-up));
+  animation-duration: var(--explode);
 }
 
 article:nth-of-type(1) {
@@ -187,28 +219,20 @@ article:nth-of-type(2) {
   position: absolute;
 }
 
-#pijl {
+article:nth-of-type(1) {
   width: 1em;
   height: 1em;
   /* background-color: white; */
   animation: arrow 4s cubic-bezier(0.55, 0.09, 0.68, 0.53) infinite;
 }
 
-#man {
+article:nth-of-type(2) {
   width: 1em;
   height: 1em;
   /* background-color: white; */
-  animation: walk cubic-bezier(0.55, 0.09, 0.68, 0.53);
+  animation: walk linear;
   animation-duration: var(--walking);
   animation-fill-mode: both;
-}
-
-section:nth-of-type(4) div:before {
-  animation: firework ease-in-out;
-  /* animation: firework 5s 1s ease-in-out infinite; */
-  background-color: red;
-  animation-delay: calc(var(--walking) + var(--rocket-up));
-  animation-duration: var(--explode);
 }
 
 section:nth-of-type(5) {
@@ -222,21 +246,22 @@ section:nth-of-type(5) div:before {
   animation: firework 4s ease-in-out;
   /* Diffrent color for every explosion  */
   background-color: #f5cf52;
-  animation-delay: calc(var(--walking) + var(--rocket-up));
+  animation-delay: calc(var(--walking) + 1.5s);
 }
 
 section:nth-of-type(6) {
-  background-image: conic-gradient(
+  /* background-image: conic-gradient(
     from var(--angle, 0deg),
     crimson,
     dodgerblue,
     crimson
-  );
+  ); */
+  background-image: url("../images/day-night.png");
 
-  animation: draaien 1s linear infinite, circleMove 4s ease-in-out infinite;
+  animation: draaien 1s linear infinite;
   height: 5em;
   width: 5em;
-  bottom: 0;
+  top: 0;
   left: 0;
   border-radius: 100%;
 }
@@ -271,8 +296,16 @@ section:nth-of-type(6) {
 }
 
 @keyframes move-firework {
-  to {
-    translate: 0px -28rem;
+  0% {
+    translate: 0 0rem;
+  }
+
+  90% {
+    translate: 0 -28rem;
+  }
+  100% {
+    display: none;
+    translate: 0 -28rem;
   }
 }
 
@@ -296,10 +329,11 @@ section:nth-of-type(6) {
 
 @keyframes walk {
   from {
-    transform: translateX(0);
+    transform: translateX(-30vw);
   }
   to {
-    transform: translateX(50vw);
+    transform: translateX(100vw);
+    display: none;
   }
 }
 
