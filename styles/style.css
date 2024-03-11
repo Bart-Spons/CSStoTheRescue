@@ -112,6 +112,7 @@ label:nth-of-type(2) {
   bottom: 1em;
   right: 3em;
   position: absolute;
+  border-radius: 2em;
 }
 
 label:first-of-type {
@@ -133,6 +134,11 @@ label:nth-of-type(2):has(input[type="checkbox"]:checked)
 /* light mode */
 body:has(label:nth-of-type(3) input[type="checkbox"]:checked) {
   background-color: white;
+  color: black;
+}
+
+body:has(label:nth-of-type(4) input[type="checkbox"]:checked)
+  > label:nth-of-type(2) {
   color: black;
 }
 
