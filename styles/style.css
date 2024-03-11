@@ -119,8 +119,15 @@ body:has(label:nth-of-type(1) input[type="checkbox"]:checked) {
   color: black;
 }
 
+body:has(label:nth-of-type(1) input[type="checkbox"]:checked)
+  > article:nth-of-type(3)
+  > img:nth-of-type(1) {
+  display: block;
+}
+
 body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
-  > label:nth-of-type(2) {
+  > label:nth-of-type(1),
+label:nth-of-type(6) {
   color: black;
 }
 
@@ -129,6 +136,10 @@ body:has(label:nth-of-type(2) input[type="checkbox"]:checked) {
   background-color: black;
   color: white;
 }
+
+/************/
+/* sections */
+/************/
 
 section:nth-of-type(1) {
   /* position */
@@ -311,22 +322,24 @@ section:nth-of-type(4) {
 }
 
 section:nth-of-type(7) {
-  left: 85%;
-  top: 25%;
+  left: 87.5%;
+  top: 16%;
   transform: scale(1);
-  display: none;
+  /* display: none; */
 }
 
 section:nth-of-type(7) div:before {
-  animation: firework 1s 2s ease-in-out infinite;
+  animation: firework 2s ease-in-out;
   background-color: purple;
   /* box-shadow: blue 0 0 50px; */
   /* animation-delay: calc(var(--walking) + 0.75s); */
+  animation-delay: calc(var(--walking) + 0.75s);
 }
 
 section:nth-of-type(7) div::after {
-  animation: sparkles 1s 1.5s ease-in-out infinite;
+  animation: sparkles 2s 1.5s ease-in-out;
   background-color: rebeccapurple;
+  animation-delay: calc(var(--walking) + 1s);
   /* animation-delay: 0.5s; */
 }
 
@@ -349,6 +362,188 @@ section:nth-of-type(8) div::after {
   background-color: red;
   /* animation-delay: 0.5s; */
 }
+
+/* Make gif smaller */
+article img {
+  width: 12em;
+  height: auto;
+}
+
+article:nth-of-type(3) {
+  position: absolute;
+  top: 3em;
+  display: none;
+}
+
+/************/
+/* labels */
+/************/
+
+/* label 1 */
+
+label:first-of-type {
+  padding: 1em;
+  border-radius: 2em;
+  left: 3em;
+  bottom: 9em;
+  position: absolute;
+  background-color: whitesmoke;
+}
+
+/* label 2*/
+
+label:nth-of-type(2) {
+  color: white;
+  padding: 1em;
+  bottom: 5em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+  background-color: black;
+}
+
+/* Maan en zon */
+
+/* label 3 */
+
+/* als deze aan is gaan alle div's af */
+label:nth-of-type(3):has(input[type="checkbox"]:checked) ~ section {
+  /* animation: firework 2s ease-in-out infinite; */
+  display: block;
+}
+
+label:nth-of-type(3) {
+  background-color: darkkhaki;
+  padding: 1em;
+  bottom: 17em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* label 4 */
+
+label:nth-of-type(4):has(input[type="checkbox"]:checked) ~ section {
+  /* animation: firework 15s ease-in-out infinite; */
+  animation: sparkles 2s 1.5s ease-in-out infinite;
+  display: block;
+}
+
+label:nth-of-type(4) {
+  background-color: grey;
+  padding: 1em;
+  bottom: 21em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* label 5 */
+
+/* groen */
+label:nth-of-type(5):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(1) {
+  display: block;
+  animation: moveRight 2s infinite alternate;
+}
+
+label:nth-of-type(5) {
+  background-color: green;
+  padding: 1em;
+  bottom: 25em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* label 6 */
+
+label:nth-of-type(6) {
+  background-color: yellow;
+  padding: 1em;
+  bottom: 13em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* geel */
+label:nth-of-type(6):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(2) {
+  display: block;
+  animation: moveLeft 2s infinite alternate;
+}
+
+/* label 7 */
+
+label:nth-of-type(7) {
+  background-color: blue;
+  padding: 1em;
+  bottom: 29em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+label:nth-of-type(7):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(3) {
+  display: block;
+  animation: moveDown 1s infinite alternate;
+}
+
+/* label 8 */
+
+label:nth-of-type(8) {
+  background-color: orange;
+  padding: 1em;
+  bottom: 33em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+label:nth-of-type(8):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(5) {
+  display: block;
+}
+/* label 9 */
+
+label:nth-of-type(9) {
+  background-color: purple;
+  color: white;
+  padding: 1em;
+  bottom: 1em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+label:nth-of-type(9):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(7) {
+  display: block;
+  animation: sparkles 2s 1.5s ease-in-out infinite;
+}
+/* label 10 */
+
+label:nth-of-type(10):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(8) {
+  display: block;
+  animation: moveLeft 2s infinite alternate;
+}
+
+label:nth-of-type(10) {
+  background-color: red;
+  padding: 1em;
+  bottom: 37em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/*************/
+/* animation */
+/* keyframes */
+/*************/
 
 @keyframes draaien {
   0% {
@@ -421,177 +616,35 @@ section:nth-of-type(8) div::after {
   }
 }
 
+@keyframes moveRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100px);
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(50px);
+  }
+}
+
 @property --angle {
   syntax: "<angle>";
   inherits: false;
   initial-value: 0deg;
-}
-
-/* Dark mode / light mode */
-
-/* Change theme */
-
-/* Make gif smaller */
-article img {
-  width: 12em;
-  height: auto;
-}
-
-/* labels */
-
-/* label 1 */
-
-label:first-of-type {
-  padding: 1em;
-  border-radius: 2em;
-  left: 3em;
-  bottom: 9em;
-  position: absolute;
-  background-color: whitesmoke;
-}
-
-/* go crazy label input*/
-
-/* go crazy label input*/
-/* als deze aan is gaan alle div's af */
-
-/* label 2*/
-
-label:nth-of-type(2) {
-  color: white;
-  padding: 1em;
-  bottom: 5em;
-  left: 3em;
-  position: absolute;
-  border-radius: 2em;
-  background-color: black;
-}
-
-/* label 3 */
-
-/* als deze aan is gaan alle div's af */
-label:nth-of-type(3):has(input[type="checkbox"]:checked) ~ section {
-  /* animation: firework 2s ease-in-out infinite; */
-  display: block;
-}
-
-label:nth-of-type(3) {
-  background-color: darkkhaki;
-  padding: 1em;
-  bottom: 17em;
-  left: 3em;
-  position: absolute;
-  border-radius: 2em;
-}
-
-/* label 4 */
-
-label:nth-of-type(4):has(input[type="checkbox"]:checked) ~ section {
-  animation: firework 15s ease-in-out infinite;
-  display: block;
-}
-
-label:nth-of-type(4) {
-  background-color: grey;
-  padding: 1em;
-  bottom: 21em;
-  left: 3em;
-  position: absolute;
-  border-radius: 2em;
-}
-
-/* label 5 */
-
-/* groen */
-label:nth-of-type(5):has(input[type="checkbox"]:checked)
-  + section:nth-of-type(1) {
-  display: block;
-}
-
-label:nth-of-type(5) {
-  background-color: green;
-  padding: 1em;
-  bottom: 25em;
-  left: 3em;
-  position: absolute;
-  border-radius: 2em;
-}
-
-/* label 6 */
-
-label:nth-of-type(6) {
-  background-color: yellow;
-  padding: 1em;
-  bottom: 13em;
-  left: 3em;
-  position: absolute;
-  border-radius: 2em;
-}
-
-/* geel */
-label:nth-of-type(6):has(input[type="checkbox"]:checked)
-  + section:nth-of-type(2) {
-  display: block;
-}
-
-/* label 7 */
-
-label:nth-of-type(7) {
-  background-color: blue;
-  padding: 1em;
-  bottom: 29em;
-  left: 3em;
-  position: absolute;
-  border-radius: 2em;
-}
-
-label:nth-of-type(7):has(input[type="checkbox"]:checked)
-  + section:nth-of-type(3) {
-  display: block;
-}
-
-/* label 8 */
-
-label:nth-of-type(8) {
-  background-color: orange;
-  padding: 1em;
-  bottom: 33em;
-  left: 3em;
-  position: absolute;
-  border-radius: 2em;
-}
-
-label:nth-of-type(8):has(input[type="checkbox"]:checked)
-  + section:nth-of-type(5) {
-  display: block;
-}
-/* label 9 */
-
-label:nth-of-type(9) {
-  background-color: purple;
-  padding: 1em;
-  bottom: 1em;
-  left: 3em;
-  position: absolute;
-  border-radius: 2em;
-}
-
-label:nth-of-type(9):has(input[type="checkbox"]:checked)
-  + section:nth-of-type(7) {
-  display: block;
-}
-/* label 10 */
-
-label:nth-of-type(10):has(input[type="checkbox"]:checked)
-  + section:nth-of-type(8) {
-  display: block;
-}
-
-label:nth-of-type(10) {
-  background-color: red;
-  padding: 1em;
-  bottom: 37em;
-  left: 3em;
-  position: absolute;
-  border-radius: 2em;
 }
