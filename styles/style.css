@@ -81,16 +81,7 @@ div:nth-child(8) {
   transform: rotate(315deg) translateY(1em);
 }
 
-div:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  height: 2em;
-  border-radius: 40%;
-}
-
+div:before,
 div:after {
   content: "";
   position: absolute;
@@ -100,6 +91,16 @@ div:after {
   height: 2em;
   border-radius: 40%;
 }
+
+/* div:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 2em;
+  border-radius: 40%;
+} */
 
 /* 
 @property --rotate {
@@ -112,11 +113,26 @@ input {
   display: none;
 }
 
+p {
+  position: absolute;
+  margin: 0;
+  text-align: center;
+  font-size: min(10vmin, 10em);
+  top: 0;
+  left: 3rem;
+}
+
+p::after {
+  /* aanpasbaar */
+  content: var(--emoji, "☁️");
+}
+
 /* labels */
 /* light mode */
 body:has(label:nth-of-type(1) input[type="checkbox"]:checked) {
   background-color: white;
   color: black;
+  --emoji: "🌞";
 }
 
 body:has(label:nth-of-type(1) input[type="checkbox"]:checked)
@@ -126,15 +142,35 @@ body:has(label:nth-of-type(1) input[type="checkbox"]:checked)
 }
 
 body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
+  article:nth-of-type(4) {
+  display: block;
+}
+
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
+  article:nth-of-type(5) {
+  display: block;
+}
+
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
   > label:nth-of-type(1),
 label:nth-of-type(6) {
   color: black;
+}
+
+/* als ze beide gechecked zijn,  */
+body:has([name="lightmode"]:checked):has([name="darkmode"]:checked) {
+  background-color: grey;
+}
+
+body:has([name="lightmode"]:checked):has([name="darkmode"]:checked) p {
+  --emoji: "🌨️";
 }
 
 /* Dark mode */
 body:has(label:nth-of-type(2) input[type="checkbox"]:checked) {
   background-color: black;
   color: white;
+  --emoji: "🌝";
 }
 
 /************/
@@ -293,8 +329,8 @@ section:nth-of-type(6) {
 }
 
 section:nth-of-type(2) {
-  left: 70%;
-  top: 20%;
+  left: 75%;
+  bottom: 80%;
   transform: scale(1);
   display: none;
 }
@@ -358,7 +394,7 @@ section:nth-of-type(8) div:before {
 }
 
 section:nth-of-type(8) div::after {
-  animation: sparkles 1s 1.5s ease-in-out infinite;
+  animation: sparkles 1s ease-in-out infinite;
   background-color: red;
   /* animation-delay: 0.5s; */
 }
@@ -425,7 +461,6 @@ label:nth-of-type(3) {
 
 label:nth-of-type(4):has(input[type="checkbox"]:checked) ~ section {
   /* animation: firework 15s ease-in-out infinite; */
-  animation: sparkles 2s 1.5s ease-in-out infinite;
   display: block;
 }
 
@@ -500,6 +535,7 @@ label:nth-of-type(8) {
   left: 3em;
   position: absolute;
   border-radius: 2em;
+  filter: hue-rotate(90deg);
 }
 
 label:nth-of-type(8):has(input[type="checkbox"]:checked)
@@ -521,7 +557,7 @@ label:nth-of-type(9) {
 label:nth-of-type(9):has(input[type="checkbox"]:checked)
   + section:nth-of-type(7) {
   display: block;
-  animation: sparkles 2s 1.5s ease-in-out infinite;
+  animation: firework 2s 1.5s ease-in-out infinite;
 }
 /* label 10 */
 
@@ -538,6 +574,42 @@ label:nth-of-type(10) {
   left: 3em;
   position: absolute;
   border-radius: 2em;
+}
+
+section:nth-of-type(9) {
+  left: 80%;
+  top: 80%;
+  transform: scale(0.9);
+  /* display: none; */
+}
+
+section:nth-of-type(9) article {
+  position: absolute;
+  animation: moveUp 7s forwards;
+  /* outline: red 12px solid; */
+}
+
+section:nth-of-type(9) {
+  /* animation: firework 5s 2s ease-in-out infinite; */
+
+  /* background-color: red; */
+  /* outline: 10px solid red; */
+  position: absolute;
+  /* box-shadow: blue 0 0 50px; */
+  /* animation-delay: calc(var(--walking) + 0.75s); */
+}
+
+select:nth-of-type(9) div {
+  display: none;
+}
+
+section:nth-of-type(9) div::before {
+  animation: sparkles 3s 6s;
+  background-color: red;
+}
+
+section article {
+  animation: none;
 }
 
 /*************/
@@ -568,23 +640,32 @@ label:nth-of-type(10) {
 @keyframes sparkles {
   0% {
     top: 90%;
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
   }
   100% {
     top: 30%;
+    opacity: 0;
+    filter: blur(10px);
   }
 }
 
 @keyframes move-firework {
   0% {
     translate: 0 0rem;
+    opacity: 1;
   }
 
   90% {
     translate: 0 -28rem;
+    opacity: 1;
   }
   100% {
     display: none;
     translate: 0 -28rem;
+    opacity: 0;
   }
 }
 
@@ -643,8 +724,81 @@ label:nth-of-type(10) {
   }
 }
 
+@keyframes moveUp {
+  from {
+    bottom: 10vh;
+  }
+  to {
+    bottom: 70vh;
+  }
+}
+
 @property --angle {
   syntax: "<angle>";
   inherits: false;
   initial-value: 0deg;
 }
+
+@keyframes rotatingReverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+article:nth-of-type(4) {
+  animation: rotatingReverse 10s linear infinite;
+  position: absolute;
+  margin: 1em auto;
+  width: 1em;
+  font-size: 2em;
+  top: 1em;
+  display: none;
+}
+
+article:nth-of-type(5) {
+  animation: rotating 5s linear infinite;
+  position: absolute;
+  margin: 1em auto;
+  width: 1em;
+  font-size: 2em;
+  top: 3em;
+  display: none;
+}
+
+article:nth-of-type(4):before,
+article:nth-of-type(5):before {
+  content: "";
+  position: absolute;
+  background: blue;
+  width: 1em;
+  height: 1em;
+  transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg);
+}
+
+article:nth-of-type(4):after,
+article:nth-of-type(5):after {
+  content: "";
+  position: absolute;
+  background: blue;
+  width: 1em;
+  height: 1em;
+  transform: rotate(45deg) skewX(22.5deg) skewY(22.5deg);
+}
+
+/* li {
+  text-decoration: none;
+  width: 1em;
+  height: 3em;
+  background-color: white;
+} */
