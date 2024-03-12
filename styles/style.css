@@ -27,6 +27,7 @@ label {
   /* padding: 0.5em;
   background-color: white;
   border-radius: 2em; */
+  padding: 1em;
 }
 
 a {
@@ -148,6 +149,16 @@ body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
 
 body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
   article:nth-of-type(5) {
+  display: block;
+}
+
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
+  article:nth-of-type(6) {
+  display: block;
+}
+
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
+  article:nth-of-type(7) {
   display: block;
 }
 
@@ -418,7 +429,6 @@ article:nth-of-type(3) {
 /* label 1 */
 
 label:first-of-type {
-  padding: 1em;
   border-radius: 2em;
   left: 3em;
   bottom: 9em;
@@ -430,7 +440,7 @@ label:first-of-type {
 
 label:nth-of-type(2) {
   color: white;
-  padding: 1em;
+
   bottom: 5em;
   left: 3em;
   position: absolute;
@@ -450,7 +460,7 @@ label:nth-of-type(3):has(input[type="checkbox"]:checked) ~ section {
 
 label:nth-of-type(3) {
   background-color: darkkhaki;
-  padding: 1em;
+
   bottom: 17em;
   left: 3em;
   position: absolute;
@@ -459,14 +469,14 @@ label:nth-of-type(3) {
 
 /* label 4 */
 
-label:nth-of-type(4):has(input[type="checkbox"]:checked) ~ section {
+label:nth-of-type(4):has(input[type="checkbox"]:checked) ~ article {
   /* animation: firework 15s ease-in-out infinite; */
   display: block;
 }
 
 label:nth-of-type(4) {
   background-color: grey;
-  padding: 1em;
+
   bottom: 21em;
   left: 3em;
   position: absolute;
@@ -484,7 +494,7 @@ label:nth-of-type(5):has(input[type="checkbox"]:checked)
 
 label:nth-of-type(5) {
   background-color: green;
-  padding: 1em;
+
   bottom: 25em;
   left: 3em;
   position: absolute;
@@ -495,7 +505,7 @@ label:nth-of-type(5) {
 
 label:nth-of-type(6) {
   background-color: yellow;
-  padding: 1em;
+
   bottom: 13em;
   left: 3em;
   position: absolute;
@@ -513,7 +523,7 @@ label:nth-of-type(6):has(input[type="checkbox"]:checked)
 
 label:nth-of-type(7) {
   background-color: blue;
-  padding: 1em;
+
   bottom: 29em;
   left: 3em;
   position: absolute;
@@ -530,7 +540,7 @@ label:nth-of-type(7):has(input[type="checkbox"]:checked)
 
 label:nth-of-type(8) {
   background-color: orange;
-  padding: 1em;
+
   bottom: 33em;
   left: 3em;
   position: absolute;
@@ -547,7 +557,7 @@ label:nth-of-type(8):has(input[type="checkbox"]:checked)
 label:nth-of-type(9) {
   background-color: purple;
   color: white;
-  padding: 1em;
+
   bottom: 1em;
   left: 3em;
   position: absolute;
@@ -569,7 +579,7 @@ label:nth-of-type(10):has(input[type="checkbox"]:checked)
 
 label:nth-of-type(10) {
   background-color: red;
-  padding: 1em;
+
   bottom: 37em;
   left: 3em;
   position: absolute;
@@ -739,6 +749,8 @@ section article {
   initial-value: 0deg;
 }
 
+/* rotate sterren */
+
 @keyframes rotatingReverse {
   from {
     transform: rotate(0deg);
@@ -756,28 +768,46 @@ section article {
     transform: rotate(0deg);
   }
 }
-article:nth-of-type(4) {
-  animation: rotatingReverse 10s linear infinite;
+
+article:nth-of-type(4),
+article:nth-of-type(5),
+article:nth-of-type(6),
+article:nth-of-type(7) {
   position: absolute;
   margin: 1em auto;
   width: 1em;
   font-size: 2em;
-  top: 1em;
+
   display: none;
+}
+
+article:nth-of-type(4) {
+  animation: rotating 5s linear infinite;
+  top: 1em;
 }
 
 article:nth-of-type(5) {
-  animation: rotating 5s linear infinite;
-  position: absolute;
-  margin: 1em auto;
-  width: 1em;
-  font-size: 2em;
-  top: 3em;
-  display: none;
+  animation: rotatingReverse 10s linear infinite;
+  top: 2em;
+  left: 20em;
 }
 
+article:nth-of-type(6) {
+  animation: rotatingReverse 3s linear infinite;
+  top: 3em;
+}
+
+article:nth-of-type(7) {
+  animation: rotating 7s linear infinite;
+  top: 4em;
+}
+
+/* Bron: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skewX */
+
 article:nth-of-type(4):before,
-article:nth-of-type(5):before {
+article:nth-of-type(5):before,
+article:nth-of-type(6):before,
+article:nth-of-type(7):before {
   content: "";
   position: absolute;
   background: blue;
@@ -787,7 +817,9 @@ article:nth-of-type(5):before {
 }
 
 article:nth-of-type(4):after,
-article:nth-of-type(5):after {
+article:nth-of-type(5):after,
+article:nth-of-type(6):after,
+article:nth-of-type(7):after {
   content: "";
   position: absolute;
   background: blue;
@@ -802,3 +834,59 @@ article:nth-of-type(5):after {
   height: 3em;
   background-color: white;
 } */
+
+/* mediaquerys */
+@media screen and (max-width: 600px) {
+  label {
+    padding: 0.2em;
+    content: "";
+  }
+  label:nth-of-type(1) {
+    left: 1em;
+    bottom: 1em;
+  }
+  label:nth-of-type(2) {
+    left: 1em;
+    bottom: 3em;
+  }
+  label:nth-of-type(3) {
+    left: 1em;
+    bottom: 5em;
+  }
+  label:nth-of-type(4) {
+    left: 1em;
+    bottom: 7em;
+  }
+  label:nth-of-type(5) {
+    left: 1em;
+    bottom: 9em;
+  }
+  label:nth-of-type(6) {
+    left: 1em;
+    bottom: 11em;
+  }
+  label:nth-of-type(7) {
+    left: 1em;
+    bottom: 13em;
+  }
+  label:nth-of-type(8) {
+    left: 1em;
+    bottom: 15em;
+  }
+  label:nth-of-type(9) {
+    left: 1em;
+    bottom: 17em;
+  }
+  label:nth-of-type(10) {
+    left: 1em;
+    bottom: 19em;
+  }
+  a {
+    top: 1em;
+    left: 1em;
+    position: absolute;
+  }
+  p {
+    right: 1rem;
+  }
+}
