@@ -312,4 +312,4 @@ article:nth-of-type(7) {
 }
 ```
 
-![alt text](image.png)
+<img src="./images/sterrenDarkMode.png">
