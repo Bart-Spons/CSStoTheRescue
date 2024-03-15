@@ -1,6 +1,11 @@
 /* Verbergt standaard de kleurblokken */
-div {
+div:nth-of-type(2),
+div:nth-of-type(1) {
   display: none;
+}
+
+label:nth-of-type(1):has(input:checked) ~ div:nth-of-type(3) {
+  animation: move 5s infinite;
 }
 
 /* Toont het rode blok als de tweede checkbox (rood vuurwerk) is aangevinkt NA de trigger */
@@ -8,4 +13,17 @@ label:nth-of-type(1):has(input:checked) ~ label:nth-of-type(2):has(input:checked
 /* Toont het groene blok als de derde checkbox (groen vuurwerk) is aangevinkt NA de trigger */
 label:nth-of-type(1):has(input:checked) ~ label:nth-of-type(3):has(input:checked) ~ div:nth-of-type(2) {
   display: block;
+  animation: move 5s 2s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translatex(0);
+  }
+  50% {
+    transform: translatex(1000%);
+  }
+  100% {
+    transform: translatex(0);
+  }
 }
