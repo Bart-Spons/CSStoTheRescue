@@ -842,8 +842,10 @@ article:nth-of-type(7):before {
   background: blue;
   width: 1em;
   height: 1em;
-  transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg);
+  transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg) ;
 }
+
+/* animation reverse */
 
 article:nth-of-type(4):after,
 article:nth-of-type(5):after,
