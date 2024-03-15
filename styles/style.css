@@ -322,9 +322,9 @@ article:nth-of-type(2) {
   width: 1em;
   height: 1em;
   /* background-color: white; */
-  animation: walk linear;
+  /* animation: walk linear;
   animation-duration: var(--walking);
-  animation-fill-mode: both;
+  animation-fill-mode: both; */
 }
 
 section:nth-of-type(5) {
@@ -568,10 +568,10 @@ label:nth-of-type(8) {
   filter: hue-rotate(90deg);
 }
 
-label:nth-of-type(8):has(input[type="checkbox"]:checked)
+/* label:nth-of-type(8):has(input[type="checkbox"]:checked)
   + section:nth-of-type(5) {
   display: block;
-}
+} */
 /* label 9 */
 
 label:nth-of-type(9) {
@@ -866,61 +866,6 @@ article:nth-of-type(7):after {
   background-color: white;
 } */
 
-/* mediaquerys */
-@media screen and (max-width: 600px) {
-  label {
-    padding: 0.2em;
-    content: "";
-  }
-  label:nth-of-type(1) {
-    left: 1em;
-    bottom: 1em;
-  }
-  label:nth-of-type(2) {
-    left: 1em;
-    bottom: 3em;
-  }
-  label:nth-of-type(3) {
-    left: 1em;
-    bottom: 5em;
-  }
-  label:nth-of-type(4) {
-    left: 1em;
-    bottom: 7em;
-  }
-  label:nth-of-type(5) {
-    left: 1em;
-    bottom: 9em;
-  }
-  label:nth-of-type(6) {
-    left: 1em;
-    bottom: 11em;
-  }
-  label:nth-of-type(7) {
-    left: 1em;
-    bottom: 13em;
-  }
-  label:nth-of-type(8) {
-    left: 1em;
-    bottom: 15em;
-  }
-  label:nth-of-type(9) {
-    left: 1em;
-    bottom: 17em;
-  }
-  label:nth-of-type(10) {
-    left: 1em;
-    bottom: 19em;
-  }
-  a {
-    top: 1em;
-    left: 1em;
-    position: absolute;
-  }
-  p {
-    right: 1rem;
-  }
-}
 
 /* Verbergt de checkbox */
 #trigger {
@@ -940,6 +885,9 @@ article:nth-of-type(7):after {
   animation: walk 5s;
 }
 
+
+
+
 /* Definieer de keyframes voor de animatie */
 @keyframes example {
   0% {
@@ -958,3 +906,11 @@ article:nth-of-type(7):after {
     transform: translateX(0);
   }
 }
+
+
+
+/* als ik op label 8 klik, dan moet section 5 verschijnen als ook #trigger checked, niet alleen label 8 */
+
+
+/* END: ed8c6549bwf9 */
+

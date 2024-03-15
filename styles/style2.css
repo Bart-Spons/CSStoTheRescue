@@ -1,0 +1,14 @@
+/* Basisstyling voor de kleurblokken */
+.kleurblok {
+  width: 100px;
+  height: 100px;
+  display: none; /* Verbergt de blokken standaard */
+}
+
+/* Toon de kleurblokken wanneer de trigger checkbox is geactiveerd EN de respectieve kleur is geselecteerd */
+#trigger:checked ~ #roodVuurwerk:checked ~ #rood {
+  display: block;
+}
+input:first-of-type:checked ~ input:nth-of-type(3) ~ div:nth-of-type(2) {
+  display: block;
+}
