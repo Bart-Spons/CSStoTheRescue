@@ -842,7 +842,7 @@ article:nth-of-type(7):before {
   background: blue;
   width: 1em;
   height: 1em;
-  transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg) ;
+  transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg);
 }
 
 /* animation reverse */
@@ -919,5 +919,42 @@ article:nth-of-type(7):after {
   }
   p {
     right: 1rem;
+  }
+}
+
+/* Verbergt de checkbox */
+#trigger {
+  display: none;
+}
+
+/* Basisstijl voor het element dat je wilt animeren */
+.animatable {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  transition: transform 1s;
+}
+
+/* Wanneer de checkbox is aangevinkt, voeg een klasse toe met een animatie */
+#trigger:checked ~ .animatable {
+  animation: walk 5s;
+}
+
+/* Definieer de keyframes voor de animatie */
+@keyframes example {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(100px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
