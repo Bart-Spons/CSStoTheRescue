@@ -1,12 +1,49 @@
+body {
+  /* background-color: #000; */
+  /* display: flex; */
+  padding: 2em;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: antiquewhite;
+}
+
+h1 {
+  /* display: none; */
+  font-family: Tilt;
+  position: absolute;
+  font-size: 5vw;
+  /* height: 10vh; */
+  width: auto;
+  font-variation-settings: "XROT" 45, "YROT" 15;
+  font-weight: normal;
+  /* elke numerieke waarde animeren */
+  /* animation: 2s 1s ease-in-out infinite alternate; */
+  animation-delay: calc(var(--walking) / 2);
+  background-image: linear-gradient(90deg, crimson, dodgerblue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@font-face {
+  font-family: "Tilt";
+  src: url("../fonts/TiltPrism[XROT,YROT].woff2");
+}
+
 span {
   position: absolute;
   width: 15px;
   height: 15px;
   background-color: red;
+  /* background-image: radial-gradient(white, red); */
   border-radius: 50%;
   opacity: 0;
-  animation: explode 2s forwards infinite;
   animation-delay: 2s;
+  animation: explode 2s forwards infinite,
+    kleurverloopStipjes 2s ease-in infinite;
+  display: none;
 }
 
 /* Verbergt standaard de kleurblokken */
@@ -19,61 +56,170 @@ div:nth-of-type(1) {
   background-color: red;
   width: 100px;
   height: 100px;
+  opacity: 0;
 }
 
 div:nth-of-type(2) {
   background-color: green;
   width: 100px;
   height: 100px;
+  opacity: 0;
 }
 
 div:nth-of-type(3) {
-  background-color: blue;
-  width: 100px;
-  height: 100px;
+  /* background-color: blue; */
+  position: absolute;
+  /* width: 100px;
+  height: 100px; */
+  bottom: 1em;
+}
+
+div:nth-of-type(3) img {
+  width: 10em;
+  height: auto;
+  /* position: absolute; */
 }
 
 div:nth-of-type(4) {
   position: relative;
   display: none;
+  top: 0vh;
+  left: 92vw;
+}
+
+section:nth-of-type(1) img {
+  height: 10em;
+  width: auto;
+  right: 15em;
+  position: absolute;
+  bottom: 1em;
+  opacity: 0;
 }
 
 label:nth-of-type(1):has(input:checked) ~ div:nth-of-type(3) {
-  animation: move 5s infinite;
+  animation: move 5s;
 }
 
-/* Toont het rode blok als de tweede checkbox (rood vuurwerk) is aangevinkt NA de trigger */
-label:nth-of-type(1):has(input:checked) ~ label:nth-of-type(2):has(input:checked) ~ div:nth-of-type(1),
-/* Toont het groene blok als de derde checkbox (groen vuurwerk) is aangevinkt NA de trigger */
-label:nth-of-type(1):has(input:checked) ~ label:nth-of-type(3):has(input:checked) ~ div:nth-of-type(2) {
-  display: block;
-  animation: move 5s 2s infinite;
+label:nth-of-type(1):has(input:checked) ~ h1 {
+  animation: moveTitle 5s forwards;
 }
 
 label:nth-of-type(1):has(input:checked) ~ div:nth-of-type(4) {
   display: block;
-  animation-delay: 2s;
+  /* animation: move 5s 2s infinite; */
+}
+
+/* Toont het rode blok als de tweede checkbox (rood vuurwerk) is aangevinkt NA de trigger */
+label:nth-of-type(1):has(input:checked)
+  ~ label:nth-of-type(4):has(input:checked)
+  ~ div:nth-of-type(1) {
+  display: block;
+  animation: move 5s;
+}
+
+/* Toont het groene blok als de derde checkbox (groen vuurwerk) is aangevinkt NA de trigger */
+label:nth-of-type(1):has(input:checked)
+  ~ label:nth-of-type(5):has(input:checked)
+  ~ div:nth-of-type(2) {
+  display: block;
+  animation: move 5s;
+}
+
+label:nth-of-type(1):has(input:checked) ~ div:nth-of-type(6) {
+  display: block;
+  animation-delay: 5s;
+}
+
+label:nth-of-type(1):has(input:checked) ~ section:nth-of-type(1) img {
+  animation: moveUp 3s 2s;
+  /* opacity: 1; */
+}
+
+label:nth-of-type(6):has(input[type="checkbox"]:checked) ~ div {
+  display: block;
+}
+
+/* light en dark mode */
+p {
+  position: absolute;
+  margin: 0;
+  text-align: center;
+  font-size: min(10vmin, 10em);
+  top: 0;
+  right: 3rem;
+}
+
+p::after {
+  /* aanpasbaar */
+  content: var(--emoji, "☁️");
+}
+
+/* labels */
+/* light mode */
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked) {
+  background-color: white;
+  color: black;
+  --emoji: "🌞";
+}
+
+/* als ze beide gechecked zijn,  */
+body:has([name="lightmode"]:checked):has([name="darkmode"]:checked) {
+  background-color: grey;
+}
+
+body:has([name="lightmode"]:checked):has([name="darkmode"]:checked) p {
+  --emoji: "🌨️";
+}
+
+/* Dark mode */
+body:has(label:nth-of-type(3) input[type="checkbox"]:checked) {
+  background-color: black;
+  color: white;
+  --emoji: "🌝";
 }
 
 @keyframes move {
   0% {
     transform: translatex(0);
+    opacity: 1;
   }
-  50% {
-    transform: translatex(1000%);
+  90% {
+    opacity: 1;
   }
   100% {
-    transform: translatex(0);
+    transform: translatex(70vw);
+    opacity: 0;
   }
 }
 
-body {
-  /* background-color: #000; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
+@keyframes moveUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-70vh);
+    opacity: 0;
+  }
+}
+
+@keyframes moveTitle {
+  0% {
+    transform: translateY(0);
+    /* opacity: 1; */
+  }
+
+  50% {
+    transform: translateY(10vh);
+    /* opacity: 0; */
+  }
+  100% {
+    transform: translateY(0);
+    /* opacity: 1; */
+  }
 }
 
 @keyframes explode {
@@ -186,4 +332,275 @@ span:nth-child(20) {
   --x: 125px;
   --y: -25px;
   animation-delay: 2s;
+}
+
+/* Explosion */
+ul {
+  position: absolute;
+  top: 15vh;
+  left: 70vw;
+  list-style-type: none;
+  display: none;
+}
+
+/* The line for the explosion effect is the following */
+li {
+  position: absolute;
+  bottom: 0;
+  width: 0.4em;
+  height: 10em;
+  transform-origin: bottom;
+  /* background-color: transparent; */
+  /* overflow: visible; */
+  /* background-color: orange; */
+  transform-origin: 50% 100%;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform-origin: bottom;
+  width: 12em;
+  height: 10em;
+  /* height: 100%; */
+  /* background-color: red; */
+  background-color: transparent;
+  /* Creëer een patroon van kleine bolletjes */
+  background-image: repeating-radial-gradient(
+    circle,
+    white 0%,
+    white 50%,
+    transparent 51%
+  );
+  background-size: 1em 1em; /* Pas dit aan om de grootte en afstand van de stippen te veranderen */
+
+  border-radius: 100px;
+  /* animation: swing 2s infinite ease-in-out, vuurwerk 3s infinite ease-in-out;
+   */
+  /* animation: swing 10s infinite ease-in-out, vuurwerk 3s infinite ease-in-out,
+    kleurverloopStipjes 1s infinite ease-in-out; */
+  animation: none;
+  display: none;
+}
+
+ul li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform-origin: bottom;
+  width: 0.4em;
+  height: 10%;
+  /* background-color: green; */
+  border-radius: 10px;
+  overflow: hidden;
+  animation: vuurwerk 10s infinite ease-in-out;
+}
+
+label:nth-of-type(1):has(input:checked)
+  ~ label:nth-of-type(7):has(input:checked)
+  ~ ul
+  li::before {
+  display: block;
+  animation: swing 5s infinite ease-in-out,
+    kleurverloopStipjes 1s 5s infinite ease-in-out;
+}
+
+label:nth-of-type(1):has(input:checked)
+  ~ label:nth-of-type(4):has(input:checked)
+  ~ ul
+  li::before {
+  display: block;
+  animation: swing 5s infinite ease-in-out, rood 1s 5s infinite ease-in-out;
+}
+
+label:nth-of-type(1):has(input:checked)
+  ~ label:nth-of-type(5):has(input:checked)
+  ~ ul
+  li::before {
+  display: block;
+  animation: swing 5s infinite ease-in-out, groen 1s 5s infinite ease-in-out;
+}
+
+label:nth-of-type(1):has(input:checked)
+  ~ label:nth-of-type(4):has(input:checked)
+  ~ label:nth-of-type(5):has(input:checked)
+  ~ ul
+  li::before {
+  display: block;
+  animation: swing 5s infinite ease-in-out, roodGroen 1s 5s infinite ease-in-out;
+}
+
+@keyframes rood {
+  0% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      #ff0000 91%,
+      #ff0000 100%
+    );
+  }
+  100% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      #ff0000 91%,
+      #ff0000 100%
+    );
+  }
+}
+
+@keyframes groen {
+  0% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      green 91%,
+      green 100%
+    );
+  }
+  100% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      green 91%,
+      green 100%
+    );
+  }
+}
+
+@keyframes roodGroen {
+  0% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      #ff0000 91%,
+      #ff0000 100%
+    );
+  }
+  100% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      green 91%,
+      green 100%
+    );
+  }
+}
+
+@keyframes kleurverloopStipjes {
+  0%,
+  100% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      #ff0000 91%,
+      #ff0000 100%
+    );
+  }
+  75% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      #0000ff 91%,
+      #0000ff 100%
+    );
+  }
+  50% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      green 91%,
+      green 100%
+    );
+  }
+  25% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      yellow 91%,
+      yellow 100%
+    );
+  }
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(-120deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(-120deg);
+    /* animation-delay: 2s; */
+  }
+}
+
+@keyframes vuurwerk {
+  0% {
+    top: 100%;
+  }
+  33%,
+  100% {
+    top: -30%;
+  }
+}
+
+@keyframes sparkles {
+  0% {
+    top: 90%;
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    top: 30%;
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+li:nth-child(1) {
+  transform: rotate(0deg) translateY(1em);
+}
+li:nth-child(2) {
+  transform: rotate(45deg) translateY(1em);
+}
+
+li:nth-child(3) {
+  transform: rotate(90deg) translateY(1em);
+}
+li:nth-child(4) {
+  transform: rotate(135deg) translateY(1em);
+}
+li:nth-child(5) {
+  transform: rotate(180deg) translateY(1em);
+}
+li:nth-child(6) {
+  transform: rotate(225deg) translateY(1em);
+}
+li:nth-child(7) {
+  transform: rotate(270deg) translateY(1em);
+}
+li:nth-child(8) {
+  transform: rotate(315deg) translateY(1em);
+}
+
+label:nth-of-type(1):has(input:checked) ~ ul {
+  display: block !important;
+  /* animation: move 5s 2s infinite; */
 }
