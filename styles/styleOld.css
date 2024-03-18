@@ -1,0 +1,916 @@
+:root {
+  --walking: 5s;
+  --rocket-up: 3s;
+  --explode: 3s;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /* center */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* dark mode */
+  background-color: cadetblue;
+  background-image: url("../images/landschap.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s ease;
+}
+
+/* Stijl voor de labels/radiobuttons */
+label {
+  cursor: pointer;
+  margin-right: 1em;
+  /* padding: 0.5em;
+  background-color: white;
+  border-radius: 2em; */
+  padding: 1em;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  /* display: none; */
+  font-family: Tilt;
+  position: absolute;
+  font-size: 5vw;
+  /* height: 10vh; */
+  width: auto;
+  font-variation-settings: "XROT" 45, "YROT" 15;
+  font-weight: normal;
+  /* elke numerieke waarde animeren */
+  /* animation: 2s 1s ease-in-out infinite alternate; */
+  animation: moveUp 5s forwards;
+  animation-delay: calc(var(--walking) / 2);
+  background-image: linear-gradient(90deg, crimson, dodgerblue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@font-face {
+  font-family: "Tilt";
+  src: url("../fonts/TiltPrism[XROT,YROT].woff2");
+}
+
+/* Explosion */
+section {
+  position: absolute;
+}
+
+/* The line for the explosion effect is the following */
+div {
+  position: absolute;
+  bottom: 0;
+  width: 0.4em;
+  height: 8em;
+  transform-origin: 50% 100%;
+  /* background-color: rgba(0,0,0,.2); */
+  /* background-color: red; */
+  overflow: hidden;
+}
+
+/* Make a circle */
+div:nth-child(1) {
+  transform: rotate(0deg) translateY(1em);
+}
+div:nth-child(2) {
+  transform: rotate(45deg) translateY(1em);
+}
+
+div:nth-child(3) {
+  transform: rotate(90deg) translateY(1em);
+}
+div:nth-child(4) {
+  transform: rotate(135deg) translateY(1em);
+}
+div:nth-child(5) {
+  transform: rotate(180deg) translateY(1em);
+}
+div:nth-child(6) {
+  transform: rotate(225deg) translateY(1em);
+}
+div:nth-child(7) {
+  transform: rotate(270deg) translateY(1em);
+}
+div:nth-child(8) {
+  transform: rotate(315deg) translateY(1em);
+}
+
+div:before,
+div:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 2em;
+  border-radius: 40%;
+}
+
+/* div:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 2em;
+  border-radius: 40%;
+} */
+
+/* 
+@property --rotate {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+} */
+
+input {
+  display: none;
+}
+
+p {
+  position: absolute;
+  margin: 0;
+  text-align: center;
+  font-size: min(10vmin, 10em);
+  top: 0;
+  left: 3rem;
+}
+
+p::after {
+  /* aanpasbaar */
+  content: var(--emoji, "☁️");
+}
+
+/* labels */
+/* light mode */
+body:has(label:nth-of-type(1) input[type="checkbox"]:checked) {
+  background-color: white;
+  color: black;
+  --emoji: "🌞";
+}
+
+/* body:has(label:nth-of-type(1) input[type="checkbox"]:checked)
+  > article:nth-of-type(3)
+  > img:nth-of-type(1) {
+  display: block;
+} */
+
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
+  article:nth-of-type(4) {
+  display: block;
+}
+
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
+  article:nth-of-type(5) {
+  display: block;
+}
+
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
+  article:nth-of-type(6) {
+  display: block;
+}
+
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
+  article:nth-of-type(7) {
+  display: block;
+}
+
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked)
+  > label:nth-of-type(1),
+label:nth-of-type(6) {
+  color: black;
+}
+
+/* als ze beide gechecked zijn,  */
+body:has([name="lightmode"]:checked):has([name="darkmode"]:checked) {
+  background-color: grey;
+}
+
+body:has([name="lightmode"]:checked):has([name="darkmode"]:checked) p {
+  --emoji: "🌨️";
+}
+
+/* Dark mode */
+body:has(label:nth-of-type(2) input[type="checkbox"]:checked) {
+  background-color: black;
+  color: white;
+  --emoji: "🌝";
+}
+
+/************/
+/* sections */
+/************/
+
+section:nth-of-type(1) {
+  /* position */
+  left: 70%;
+  top: 30%;
+  /* size */
+  transform: scale(1.5);
+  display: none;
+}
+
+section:nth-of-type(1) div:before {
+  animation: firework 2s ease-in-out infinite;
+  background-color: green;
+}
+
+section:nth-of-type(1) div::after {
+  animation: sparkles 0.6s ease-in-out infinite;
+  background-image: linear-gradient(
+    90deg in okLCH longer hue,
+    crimson,
+    dodgerblue
+  );
+  animation-delay: 0.5s;
+}
+
+/* geel */
+
+section:nth-of-type(2) {
+  left: 72.5%;
+  top: 25%;
+  transform: scale(0.9);
+  display: none;
+}
+
+section:nth-of-type(2) div:before {
+  /* time for the animation */
+  animation: firework 2s 1s ease-in-out infinite;
+  /* Diffrent color for every explosion  */
+  background-color: #f5cf52;
+}
+
+section:nth-of-type(2) div::after {
+  /* height: 5em; */
+  animation: sparkles 1s 1s ease-in-out infinite;
+  /* background-image: url("../images/sparkles.gif"); */
+  background-color: #f5cf52;
+}
+
+section:nth-of-type(3) {
+  left: 80%;
+  top: 15%;
+  transform: scale(0.8);
+  display: none;
+}
+section:nth-of-type(3) div:before {
+  animation: firework 6s ease-in-out infinite;
+  background-color: royalblue;
+  /* box-shadow: blue 0 0 50px; */
+  animation-delay: calc(var(--walking) + 0.75s);
+}
+
+section:nth-of-type(3) div::after {
+  animation: sparkles 2s 1s ease-in-out infinite;
+  background-color: blue;
+  animation-delay: 0.5s;
+}
+
+section:nth-of-type(4) {
+  appearance: none;
+  left: 77%;
+  top: 75%;
+  transform: scale(1);
+  /* animation: move-firework 2s ease-in-out infinite alternate; */
+  background-image: url("../images/pijl.png");
+  background-size: contain;
+  width: 5rem;
+  height: 5rem;
+  animation: move-firework ease-in-out alternate;
+  animation-delay: calc(var(--walking) / 1.5);
+  animation-duration: var(--rocket-up);
+  animation-fill-mode: both;
+  /* outline: 2px solid #f09; */
+  outline-offset: 5px;
+}
+
+section:nth-of-type(4) div:before {
+  animation: firework ease-in-out;
+  /* animation: firework 5s 1s ease-in-out infinite; */
+  background-color: red;
+  animation-delay: calc(var(--walking) + var(--rocket-up));
+  animation-duration: var(--explode);
+}
+
+article:nth-of-type(1) {
+  left: 5em;
+  position: absolute;
+}
+
+article:nth-of-type(2) {
+  left: 10em;
+  bottom: 10em;
+  position: absolute;
+}
+
+article:nth-of-type(1) {
+  width: 1em;
+  height: 1em;
+  /* background-color: white; */
+  animation: arrow 4s cubic-bezier(0.55, 0.09, 0.68, 0.53) infinite;
+}
+
+article:nth-of-type(2) {
+  width: 1em;
+  height: 1em;
+  /* background-color: white; */
+  /* animation: walk linear;
+  animation-duration: var(--walking);
+  animation-fill-mode: both; */
+}
+
+section:nth-of-type(5) {
+  left: 80%;
+  top: 15%;
+  transform: scale(0.9);
+  display: none;
+}
+
+section:nth-of-type(5) div:before {
+  /* time for the animation */
+  animation: firework 4s ease-in-out infinite;
+  /* Diffrent color for every explosion  */
+  background-color: orange;
+  /* animation-delay: calc(var(--walking) + 0.85s); */
+}
+
+section:nth-of-type(6) {
+  /* background-image: conic-gradient(
+    from var(--angle, 0deg),
+    crimson,
+    dodgerblue,
+    crimson
+  ); */
+  background-image: url("../images/day-night.png");
+
+  animation: draaien 1s linear infinite;
+  height: 5em;
+  width: 5em;
+  top: 0;
+  left: 0;
+  border-radius: 100%;
+}
+
+section:nth-of-type(2) {
+  left: 75%;
+  bottom: 80%;
+  transform: scale(1);
+  display: none;
+}
+
+section:nth-of-type(2) div:before {
+  /* time for the animation */
+  animation: firework 2s 1s ease-in-out infinite;
+  /* Diffrent color for every explosion  */
+  background-color: #f5cf52;
+  animation-delay: calc(var(--walking) + 1.5s);
+}
+
+section:nth-of-type(2) div::after {
+  animation: sparkles 2s 1.5s ease-in-out infinite;
+  /* background-image: url("../images/sparkles.gif"); */
+  background-color: hsl(120 100% 50%);
+  height: 1em;
+}
+
+section:nth-of-type(4) {
+  left: 85%;
+  top: 75%;
+  transform: scale(0.8);
+  /* display: none; */
+}
+
+section:nth-of-type(7) {
+  left: 87.5%;
+  top: 16%;
+  transform: scale(1);
+  /* display: none; */
+}
+
+section:nth-of-type(7) div:before {
+  animation: firework 2s ease-in-out;
+  background-color: purple;
+  /* box-shadow: blue 0 0 50px; */
+  /* animation-delay: calc(var(--walking) + 0.75s); */
+  animation-delay: calc(var(--walking) + 0.75s);
+}
+
+section:nth-of-type(7) div::after {
+  animation: sparkles 2s 1.5s ease-in-out;
+  background-color: rebeccapurple;
+  animation-delay: calc(var(--walking) + 1s);
+  /* animation-delay: 0.5s; */
+}
+
+section:nth-of-type(8) {
+  left: 85%;
+  top: 25%;
+  transform: scale(0.8);
+  display: none;
+}
+
+section:nth-of-type(8) div:before {
+  animation: firework 1s 2s ease-in-out infinite;
+  background-color: red;
+  /* box-shadow: blue 0 0 50px; */
+  /* animation-delay: calc(var(--walking) + 0.75s); */
+}
+
+section:nth-of-type(8) div::after {
+  animation: sparkles 1s ease-in-out infinite;
+  background-color: red;
+  /* animation-delay: 0.5s; */
+}
+
+/* Make gif smaller */
+article img {
+  width: 12em;
+  height: auto;
+}
+
+article:nth-of-type(3) {
+  position: absolute;
+  top: 3em;
+  display: none;
+}
+
+/************/
+/* labels */
+/************/
+
+/* label 1 */
+
+label:first-of-type {
+  border-radius: 2em;
+  left: 3em;
+  bottom: 9em;
+  position: absolute;
+  background-color: whitesmoke;
+}
+
+/* label 2*/
+
+label:nth-of-type(2) {
+  color: white;
+
+  bottom: 5em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+  background-color: black;
+}
+
+/* Maan en zon */
+
+/* label 3 */
+
+/* als deze aan is gaan alle div's af */
+label:nth-of-type(3):has(input[type="checkbox"]:checked) ~ section {
+  /* animation: firework 2s ease-in-out infinite; */
+  display: block;
+}
+
+label:nth-of-type(3) {
+  background-color: darkkhaki;
+
+  bottom: 17em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* label 4 */
+
+label:nth-of-type(4):has(input[type="checkbox"]:checked) ~ article {
+  /* animation: firework 15s ease-in-out infinite; */
+  display: block;
+}
+
+label:nth-of-type(4) {
+  background-color: grey;
+
+  bottom: 21em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* label 5 */
+
+/* groen */
+label:nth-of-type(5):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(1) {
+  display: block;
+  animation: moveRight 2s infinite alternate;
+}
+
+label:nth-of-type(5) {
+  background-color: green;
+
+  bottom: 25em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* label 6 */
+
+label:nth-of-type(6) {
+  background-color: yellow;
+
+  bottom: 13em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+/* geel */
+label:nth-of-type(6):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(2) {
+  display: block;
+  animation: moveLeft 2s infinite alternate;
+}
+
+/* label 7 */
+
+label:nth-of-type(7) {
+  background-color: blue;
+
+  bottom: 29em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+label:nth-of-type(7):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(3) {
+  display: block;
+  animation: moveDown 1s infinite alternate;
+}
+
+/* label 8 */
+
+label:nth-of-type(8) {
+  background-color: orange;
+
+  bottom: 33em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+  filter: hue-rotate(90deg);
+}
+
+/* label:nth-of-type(8):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(5) {
+  display: block;
+} */
+/* label 9 */
+
+label:nth-of-type(9) {
+  background-color: purple;
+  color: white;
+
+  bottom: 1em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+label:nth-of-type(9):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(7) {
+  display: block;
+  animation: firework 2s 1.5s ease-in-out infinite;
+}
+/* label 10 */
+
+label:nth-of-type(10):has(input[type="checkbox"]:checked)
+  + section:nth-of-type(8) {
+  display: block;
+  animation: moveLeft 2s infinite alternate;
+}
+
+label:nth-of-type(10) {
+  background-color: red;
+
+  bottom: 37em;
+  left: 3em;
+  position: absolute;
+  border-radius: 2em;
+}
+
+section:nth-of-type(9) {
+  left: 80%;
+  top: 80%;
+  transform: scale(0.9);
+  /* display: none; */
+}
+
+section:nth-of-type(9) article {
+  position: absolute;
+  animation: moveUp 7s forwards;
+  /* outline: red 12px solid; */
+}
+
+section:nth-of-type(9) {
+  /* animation: firework 5s 2s ease-in-out infinite; */
+
+  /* background-color: red; */
+  /* outline: 10px solid red; */
+  position: absolute;
+  /* box-shadow: blue 0 0 50px; */
+  /* animation-delay: calc(var(--walking) + 0.75s); */
+}
+
+select:nth-of-type(9) div {
+  display: none;
+}
+
+section:nth-of-type(9) div::before {
+  animation: sparkles 3s 6s;
+  background-color: red;
+}
+
+section article {
+  animation: none;
+}
+
+/*************/
+/* animation */
+/* keyframes */
+/*************/
+
+@keyframes draaien {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+
+/* explosion animation */
+@keyframes firework {
+  0% {
+    top: 100%;
+  }
+  33%,
+  100% {
+    top: -75%;
+  }
+}
+
+@keyframes sparkles {
+  0% {
+    top: 90%;
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 30%;
+    opacity: 0;
+    filter: blur(10px);
+  }
+}
+
+@keyframes move-firework {
+  0% {
+    translate: 0 0rem;
+    /* opacity: 1; */
+    rotate: 0deg;
+  }
+
+  50% {
+    translate: 0 -28rem;
+    /* opacity: 1; */
+    rotate: 0deg;
+    /* filter: blur(5px); */
+  }
+
+  60% {
+    rotate: 170deg;
+  }
+
+  100% {
+    display: none;
+    translate: 0 5rem;
+    /* opacity: 0; */
+    rotate: 180deg;
+  }
+}
+
+@keyframes arrow {
+  from {
+    transform: translateY(25em);
+  }
+  to {
+    transform: translateY(-25em);
+  }
+}
+
+@keyframes circleMove {
+  from {
+    transform: translateY(10em);
+  }
+  to {
+    transform: translateY(-50em);
+  }
+}
+
+@keyframes walk {
+  from {
+    transform: translateX(-30vw);
+  }
+  to {
+    transform: translateX(100vw);
+    display: none;
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100px);
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(50px);
+  }
+}
+
+@keyframes moveUp {
+  from {
+    bottom: 30vh;
+  }
+  to {
+    bottom: 70vh;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* rotate sterren */
+
+@keyframes rotatingReverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+article:nth-of-type(4),
+article:nth-of-type(5),
+article:nth-of-type(6),
+article:nth-of-type(7) {
+  position: absolute;
+  margin: 1em auto;
+  width: 1em;
+  font-size: 2em;
+
+  display: none;
+}
+
+article:nth-of-type(4) {
+  animation: rotating 5s linear infinite;
+  top: 1em;
+}
+
+article:nth-of-type(5) {
+  animation: rotatingReverse 10s linear infinite;
+  top: 2em;
+  left: 20em;
+}
+
+article:nth-of-type(6) {
+  animation: rotatingReverse 3s linear infinite;
+  top: 3em;
+}
+
+article:nth-of-type(7) {
+  animation: rotating 7s linear infinite;
+  top: 4em;
+}
+
+/* Bron: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/skewX */
+
+article:nth-of-type(4):before,
+article:nth-of-type(5):before,
+article:nth-of-type(6):before,
+article:nth-of-type(7):before {
+  content: "";
+  position: absolute;
+  background: blue;
+  width: 1em;
+  height: 1em;
+  transform: rotate(-45deg) skewX(22.5deg) skewY(22.5deg);
+}
+
+/* animation reverse */
+
+article:nth-of-type(4):after,
+article:nth-of-type(5):after,
+article:nth-of-type(6):after,
+article:nth-of-type(7):after {
+  content: "";
+  position: absolute;
+  background: blue;
+  width: 1em;
+  height: 1em;
+  transform: rotate(45deg) skewX(22.5deg) skewY(22.5deg);
+}
+
+/* li {
+  text-decoration: none;
+  width: 1em;
+  height: 3em;
+  background-color: white;
+} */
+
+
+/* Verbergt de checkbox */
+#trigger {
+  display: none;
+}
+
+/* Basisstijl voor het element dat je wilt animeren */
+.animatable {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  transition: transform 1s;
+}
+
+/* Wanneer de checkbox is aangevinkt, voeg een klasse toe met een animatie */
+#trigger:checked ~ .animatable {
+  animation: walk 5s;
+}
+
+
+
+
+/* Definieer de keyframes voor de animatie */
+@keyframes example {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(100px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+
+/* als ik op label 8 klik, dan moet section 5 verschijnen als ook #trigger checked, niet alleen label 8 */
+
+
+/* END: ed8c6549bwf9 */
+
