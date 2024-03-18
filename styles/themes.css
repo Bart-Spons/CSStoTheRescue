@@ -11,6 +11,8 @@ html:has([name="lightmode"]:checked):has([name="darkmode"]:checked) {
   --daynight: grey;
 }
 
+/* style queries */
+
 @container style(--daynight:light) {
   body {
     background-color: white;
