@@ -9,7 +9,7 @@
   --backgroundGreen: okLCH(0.85 0.37 145.64);
   --backgroundBlue: okLCH(0.55 0.8 260);
   --backgroundPurple: okLCH(0.55 0.8 300);
-  --backgroundMix:
+  --backgroundMix: ;
   --darkmodeColor: white;
   --darkmodeBackground: black;
 }
@@ -34,15 +34,12 @@ h1 {
   font-family: Tilt;
   position: absolute;
   font-size: 5vw;
-  top: 1em;
-  /* left: 5em; */
-  /* height: 10vh; */
+  top: 4rem;
   width: auto;
   font-variation-settings: "XROT" 45, "YROT" 15;
   font-weight: normal;
-  /* elke numerieke waarde animeren */
   /* animation: 2s 1s ease-in-out infinite alternate; */
-  animation-delay: calc(var(--walking) / 2);
+  /* animation-delay: calc(var(--walking) / 2); */
   background-image: linear-gradient(90deg, crimson, dodgerblue);
   -webkit-background-clip: text;
   background-clip: text;
@@ -54,158 +51,10 @@ h1 {
   src: url("../fonts/TiltPrism[XROT,YROT].woff2");
 }
 
-label {
-  background-color: white;
-  padding: 1em;
-  border-radius: 25%;
-  box-shadow: 0 0 0.5em 0.5em;
-}
-
-input{
+input {
   display: none;
 }
 
-html:has(input[name="rood"]:checked) label:nth-of-type(4) {
-  /* background-color: var(--backgroundRed); */
-  background-color: var(--backgroundRed)
-}
-
-html:has(input[name="groen"]:checked) label:nth-of-type(5) {
-  /* background-color: var(--backgroundRed); */
-  background-color: var(--backgroundGreen)
-}
-
-html:has(input[name="mix"]:checked) label:nth-of-type(6) {
-  /* background-color: var(--backgroundRed); */
-  background-color: var(--backgroundBlue)
-}
-
-/* Verbergt standaard de kleurblokken */
-div:nth-of-type(2),
-div:nth-of-type(1) {
-  display: none;
-}
-
-div:nth-of-type(1) {
-  background-color: red;
-  width: 100px;
-  height: 100px;
-  opacity: 0;
-}
-
-div:nth-of-type(2) {
-  /* background-color: var(--backgroundGreen); */
-  width: 100px;
-  height: 100px;
-  bottom: 1em;
-  opacity: 0;
-}
-
-div:nth-of-type(3) {
-  /* background-color: blue; */
-  position: absolute;
-  /* width: 100px;
-  height: 100px; */
-  bottom: 1em;
-  left: 10rem;
-opacity: 0;}
-
-div:nth-of-type(3) img {
-  width: 10em;
-  height: auto;
-  
-
-  /* position: absolute; */
-}
-
-div:nth-of-type(4) img {
-  position: absolute;
-  /* display: none; */
-  top: 80vh;
-  left: 1vw;
-  height: 16vh;
-  width: auto;
-}
-
-section:nth-of-type(1) img {
-  height: 5rem;
-  width: auto;
-  right: 15em;
-  position: absolute;
-  bottom: 1em;
-  opacity: 0;
-}
-
-
-label:nth-of-type(1):has(input:checked) ~ div:nth-of-type(3) {
-  animation: move 5s;
-  display: block;
-}
-
-/* label:nth-of-type(1):has(input:checked) ~ span {
-  animation: moveDiagonal 5s linear forwards;
-} */
-
-label:nth-of-type(1):has(input:checked) ~ h1 {
-  animation: moveTitle 5s forwards;
-}
-
-label:nth-of-type(1):has(input:checked) ~ div:nth-of-type(4) {
-  /* display: block; */
-  /* animation: move 5s 2s infinite; */
-}
-
-/* Toont het rode blok als de tweede checkbox (rood vuurwerk) is aangevinkt NA de trigger */
-/* label:nth-of-type(1):has(input:checked)
-  ~ label:nth-of-type(4):has(input:checked)
-  ~ div:nth-of-type(1) {
-  display: block;
-  animation: move calc(var(--walking) + var(--arrow));
-} */
-
-label:nth-of-type(1):has(input:checked)
-  ~ label:nth-of-type(4):has(input:checked)
-  ~ span:nth-of-type(1) {
-  animation: moveDiagonal 5s linear forwards;
-}
-
-/* Toont het groene blok als de derde checkbox (groen vuurwerk) is aangevinkt NA de trigger */
-/* label:nth-of-type(1):has(input:checked)
-  ~ label:nth-of-type(5):has(input:checked)
-  ~ div:nth-of-type(2) {
-  display: block;
-  animation: move var(--block);
-} */
-
-label:nth-of-type(1):has(input:checked)
-  ~ label:nth-of-type(5):has(input:checked)
-  ~ span:nth-of-type(2) {
-  animation: moveDiagonal 5s linear forwards;
-}
-
-label:nth-of-type(1):has(input:checked)
-  ~ label:nth-of-type(6):has(input:checked)
-  ~ span:nth-of-type(3) {
-  animation: moveDiagonal 5s linear forwards;
-}
-
-label:nth-of-type(1):has(input:checked) ~ div:nth-of-type(6) {
-  display: block;
-  animation-delay: var(--block);
-}
-
-label:nth-of-type(1):has(input:checked) ~ section:nth-of-type(1) img {
-  animation: moveUp var(--arrow);
-  animation-delay: var(--walking);
- 
-  /* opacity: 1; */
-}
-
-label:nth-of-type(6):has(input[type="checkbox"]:checked) ~ div {
-  display: block;
-}
-
-/* Nesting */
 p {
   position: absolute;
   margin: 0;
@@ -214,30 +63,18 @@ p {
   top: 0;
   right: 3rem;
   &::after {
-    /* aanpasbaar */
     content: var(--emoji, "☁️");
   }
 }
 
-/* labels */
-/* light mode */
-body:has(label:nth-of-type(2) input[type="checkbox"]:checked) {
-  background-color: white;
-  color: black;
-  --emoji: "🌞";
-}
-
-/* als ze beide gechecked zijn,  */
-body:has([name="lightmode"]:checked):has([name="darkmode"]:checked) {
-  background-color: grey;
-  --emoji: "🌨️";
-}
-
-/* Dark mode */
-body:has(label:nth-of-type(3) input[type="checkbox"]:checked) {
-  background-color: var(--darkmodeBackground);
-  /* color: var(--darkmodeColor); */
-  --emoji: "🌝";
+/* arrow */
+section:nth-of-type(1) img {
+  height: 5rem;
+  width: auto;
+  right: 15em;
+  position: absolute;
+  bottom: 1em;
+  opacity: 0;
 }
 
 /* Explosion */
@@ -289,102 +126,231 @@ li {
     height: 10%;
     border-radius: 10px;
     overflow: hidden;
-    animation: vuurwerk 10s infinite ease-in-out;
+    /* animation: vuurwerk 10s infinite ease-in-out; */
   }
 }
 
-label:nth-of-type(1):has(input:checked)
-  ~ label:nth-of-type(6):has(input:checked)
-  ~ ul
-  li::before {
+/*///////////////*/
+/* label nesting */
+/*///////////////*/
+
+label {
+  background-color: white;
+  padding: 1em;
+  border-radius: 25%;
+  box-shadow: 0 0 0.5em 0.5em;
+  margin-right: 1rem;
+  position: absolute;
+
+  &:nth-of-type(1) {
+    bottom: 20vh;
+    left: 2vw;
+  }
+
+  &:nth-of-type(2) {
+    /* bottom: 90vh; */
+    left: 2rem;
+  }
+
+  &:nth-of-type(3) {
+    /* bottom: 90vh; */
+    left: 10rem;
+  }
+
+  &:nth-of-type(4) {
+    bottom: 30vh;
+    left: 2vw;
+  }
+
+  &:nth-of-type(5) {
+    bottom: 30vh;
+    left: 6rem;
+  }
+
+  &:nth-of-type(6) {
+    bottom: 40vh;
+    left: 2vw;
+  }
+}
+
+/*///////////////*/
+/* span nesting  */
+/*///////////////*/
+
+span {
+  bottom: 6rem;
+  left: 5rem;
+  position: absolute;
+  width: 1em;
+  /* outline: 1px solid red; */
+  border-radius: 100%;
+  height: 1em;
+  /* animation: moveDiagonal 5s linear forwards; */
+  /* display: none; */
+  opacity: 0;
+
+  &:nth-of-type(1) {
+    background-color: var(--backgroundRed);
+  }
+
+  &:nth-of-type(2) {
+    background-color: var(--backgroundGreen);
+  }
+
+  &:nth-of-type(3) {
+    background-color: var(--backgroundBlue);
+    mix-blend-mode: screen;
+  }
+}
+
+/* Label kleur veranderen bij input */
+
+html:has(input[name="rood"]:checked) label:nth-of-type(4) {
+  background-color: var(--backgroundRed);
+}
+
+html:has(input[name="groen"]:checked) label:nth-of-type(5) {
+  background-color: var(--backgroundGreen);
+}
+
+html:has(input[name="mix"]:checked) label:nth-of-type(6) {
+  background-color: var(--backgroundBlue);
+}
+
+/*///////////////*/
+/* div nesting   */
+/*///////////////*/
+
+div {
+  &:nth-of-type(3) {
+    position: absolute;
+    bottom: 1em;
+    opacity: 0;
+    img {
+      width: 10rem;
+      height: auto;
+    }
+  }
+
+  &:nth-of-type(4) {
+    img {
+      position: absolute;
+      /* display: none; */
+      top: 80vh;
+      left: 1vw;
+      height: 16vh;
+      width: auto;
+    }
+  }
+}
+
+/*///////////////*/
+/* label nesting  */
+/*///////////////*/
+
+/* als label 1 checked is */
+
+label:nth-of-type(1):has(input:checked) {
+  & ~ h1 {
+    animation: moveTitle 5s forwards;
+  }
+
+  & ~ ul {
+    display: block;
+  }
+
+  & ~ div:nth-of-type(3) {
+    animation: move 5s;
+    display: block;
+  }
+
+  & ~ div:nth-of-type(6) {
+    display: block;
+    animation-delay: var(--block);
+  }
+
+  & ~ label:nth-of-type(4):has(input:checked) {
+    & ~ ul li::before {
+      display: block;
+      animation: swing 5s infinite ease-in-out,
+        rood 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+    }
+    & ~ span:nth-of-type(1) {
+      animation: moveDiagonal 5s linear forwards;
+    }
+  }
+
+  & ~ label:nth-of-type(5):has(input:checked) {
+    & ~ span:nth-of-type(2) {
+      animation: moveDiagonal 5s linear forwards;
+    }
+    & ~ ul li::before {
+      display: block;
+      animation: swing 5s infinite ease-in-out,
+        groen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+    }
+  }
+
+  &
+    ~ label:nth-of-type(4):has(input:checked)
+    ~ label:nth-of-type(5):has(input:checked)
+    ~ ul
+    li::before {
+    display: block;
+    animation: swing 5s infinite ease-in-out,
+      roodGroen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+  }
+
+  & ~ section:nth-of-type(1) img {
+    animation: moveUp var(--arrow);
+    animation-delay: var(--walking);
+  }
+  & ~ label:nth-of-type(6):has(input:checked) {
+    & ~ span:nth-of-type(3) {
+      animation: moveDiagonal 5s linear forwards;
+    }
+    & ~ ul li::before {
+      display: block;
+      animation: swing 5s infinite ease-in-out,
+        kleurverloopStipjes 0.3s calc(var(--walking) + var(--arrow)) infinite
+          ease-in-out;
+    }
+  }
+}
+
+label:nth-of-type(6):has(input[type="checkbox"]:checked) ~ div {
   display: block;
-  animation: swing 5s infinite ease-in-out,
-    kleurverloopStipjes 0.3s calc(var(--walking) + var(--arrow)) infinite
-      ease-in-out;
 }
 
-label:nth-of-type(1):has(input:checked)
-  ~ label:nth-of-type(4):has(input:checked)
-  ~ ul
-  li::before {
-  display: block;
-  animation: swing 5s infinite ease-in-out,
-    rood 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
-}
+/*///////////////*/
+/* li draaien   */
+/*///////////////*/
 
-label:nth-of-type(1):has(input:checked)
-  ~ label:nth-of-type(5):has(input:checked)
-  ~ ul
-  li::before {
-  display: block;
-  animation: swing 5s infinite ease-in-out,
-    groen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
-}
-
-label:nth-of-type(1):has(input:checked)
-  ~ label:nth-of-type(4):has(input:checked)
-  ~ label:nth-of-type(5):has(input:checked)
-  ~ ul
-  li::before {
-  display: block;
-  animation: swing 5s infinite ease-in-out,
-    roodGroen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
-}
-
-/* li:nth-child(1) {
-  transform: rotate(0deg) translateY(1em);
-}
-li:nth-child(2) {
-  transform: rotate(45deg) translateY(1em);
-}
-
-li:nth-child(3) {
-  transform: rotate(90deg) translateY(1em);
-}
-li:nth-child(4) {
-  transform: rotate(135deg) translateY(1em);
-}
-li:nth-child(5) {
-  transform: rotate(180deg) translateY(1em);
-}
-li:nth-child(6) {
-  transform: rotate(225deg) translateY(1em);
-}
-li:nth-child(7) {
-  transform: rotate(270deg) translateY(1em);
-}
-li:nth-child(8) {
-  transform: rotate(315deg) translateY(1em);
-} */
-
-li:nth-child(1) {
-  transform: rotate(calc(var(--rotate-step) * 0)) translateY(1em);
-}
-li:nth-child(2) {
-  transform: rotate(calc(var(--rotate-step) * 1)) translateY(1em);
-}
-li:nth-child(3) {
-  transform: rotate(calc(var(--rotate-step) * 2)) translateY(1em);
-}
-li:nth-child(4) {
-  transform: rotate(calc(var(--rotate-step) * 3)) translateY(1em);
-}
-li:nth-child(5) {
-  transform: rotate(calc(var(--rotate-step) * 4)) translateY(1em);
-}
-li:nth-child(6) {
-  transform: rotate(calc(var(--rotate-step) * 5)) translateY(1em);
-}
-li:nth-child(7) {
-  transform: rotate(calc(var(--rotate-step) * 6)) translateY(1em);
-}
-li:nth-child(8) {
-  transform: rotate(calc(var(--rotate-step) * 7)) translateY(1em);
-}
-
-label:nth-of-type(1):has(input:checked) ~ ul {
-  display: block;
-  /* animation: move 5s 2s infinite; */
+li {
+  &:nth-child(1) {
+    transform: rotate(calc(var(--rotate-step) * 0)) translateY(1em);
+  }
+  &:nth-child(2) {
+    transform: rotate(calc(var(--rotate-step) * 1)) translateY(1em);
+  }
+  &:nth-child(3) {
+    transform: rotate(calc(var(--rotate-step) * 2)) translateY(1em);
+  }
+  &:nth-child(4) {
+    transform: rotate(calc(var(--rotate-step) * 3)) translateY(1em);
+  }
+  &:nth-child(5) {
+    transform: rotate(calc(var(--rotate-step) * 4)) translateY(1em);
+  }
+  &:nth-child(6) {
+    transform: rotate(calc(var(--rotate-step) * 5)) translateY(1em);
+  }
+  &:nth-child(7) {
+    transform: rotate(calc(var(--rotate-step) * 6)) translateY(1em);
+  }
+  &:nth-child(8) {
+    transform: rotate(calc(var(--rotate-step) * 7)) translateY(1em);
+  }
 }
 
 /* Keyframes */
@@ -586,148 +552,6 @@ label:nth-of-type(1):has(input:checked) ~ ul {
     filter: blur(10px);
   }
 }
-/* 
-span {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background-color: var(--backgroundRed);
-  
-  border-radius: 50%;
-  opacity: 0;
-  animation-delay: 2s;
-  animation: explode 2s forwards infinite,
-    kleurverloopStipjes 2s ease-in infinite;
-  display: none;
-}
-
-
-span:nth-child(1) {
-  --x: -100px;
-  --y: -100px;
-  animation-delay: 0.1s;
-}
-span:nth-child(2) {
-  --x: 100px;
-  --y: -100px;
-  animation-delay: 0.2s;
-}
-span:nth-child(3) {
-  --x: -100px;
-  --y: 100px;
-  animation-delay: 0.3s;
-}
-span:nth-child(4) {
-  --x: 100px;
-  --y: 100px;
-  animation-delay: 0.4s;
-}
-span:nth-child(5) {
-  --x: 0px;
-  --y: -150px;
-  animation-delay: 0.5s;
-}
-span:nth-child(6) {
-  --x: 0px;
-  --y: 150px;
-  animation-delay: 0.6s;
-}
-span:nth-child(7) {
-  --x: -150px;
-  --y: 0px;
-  animation-delay: 0.7s;
-}
-span:nth-child(8) {
-  --x: 150px;
-  --y: 0px;
-  animation-delay: 0.8s;
-}
-span:nth-child(9) {
-  --x: -50px;
-  --y: -50px;
-  animation-delay: 0.9s;
-}
-span:nth-child(10) {
-  --x: 50px;
-  --y: -50px;
-  animation-delay: 1s;
-}
-span:nth-child(11) {
-  --x: -50px;
-  --y: 50px;
-  animation-delay: 1.1s;
-}
-span:nth-child(12) {
-  --x: 50px;
-  --y: 50px;
-  animation-delay: 1.2s;
-}
-span:nth-child(13) {
-  --x: -75px;
-  --y: -75px;
-  animation-delay: 1.3s;
-}
-span:nth-child(14) {
-  --x: 75px;
-  --y: -75px;
-  animation-delay: 1.4s;
-}
-span:nth-child(15) {
-  --x: -75px;
-  --y: 75px;
-  animation-delay: 1.5s;
-}
-span:nth-child(16) {
-  --x: 75px;
-  --y: 75px;
-  animation-delay: 1.6s;
-}
-span:nth-child(17) {
-  --x: -25px;
-  --y: -125px;
-  animation-delay: 1.7s;
-}
-span:nth-child(18) {
-  --x: 25px;
-  --y: -125px;
-  animation-delay: 1.8s;
-}
-span:nth-child(19) {
-  --x: -125px;
-  --y: -25px;
-  animation-delay: 1.9s;
-}
-span:nth-child(20) {
-  --x: 125px;
-  --y: -25px;
-  animation-delay: 2s;
-} */
-
-span {
-  bottom: 6rem;
-  left: 5rem;
-  position: absolute;
-  width: 1em;
-  /* outline: 1px solid red; */
-  border-radius: 100%;
-  height: 1em;
-  /* animation: moveDiagonal 5s linear forwards; */
-  /* display: none; */
-  opacity: 0;
-}
-
-span:nth-of-type(1) {
-  background-color: var(--backgroundRed);
-}
-
-span:nth-of-type(2) {
-  background-color: var(--backgroundGreen);
-}
-
-span:nth-of-type(3) {
-  background-color: var(--backgroundBlue);
-  mix-blend-mode: screen;
-}
 
 @keyframes moveDiagonal {
   from {
@@ -735,15 +559,46 @@ span:nth-of-type(3) {
     transform: translate(0, 0); /* Verticaal volledig onderaan */
     opacity: 1;
   }
-  90% {
-    opacity: 1;
+  85% {
+    opacity: 0.5;
   }
   to {
     /* Eindpositie: rechtsboven */
     transform: translate(
-      80vw,
-      -80vh
+      70vw,
+      -70vh
     ); /* Horizontaal volledig rechts en bovenaan */
     opacity: 0;
+  }
+}
+
+@keyframes moveDiagonalTitel {
+  0% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(50vw, 80vh);
+    opacity: 1;
+  }
+}
+
+/* responsive */
+
+@media screen and (width < 700px) {
+  ul {
+    left: 50vw;
+    top: 20vh;
+  }
+  h1 {
+    top: 5rem;
+    /* animation: moveDiagonalTitel 5s linear forwards; */
+  }
+  label:nth-of-type(1):has(input:checked) ~ h1 {
+    animation: moveDiagonalTitel 5s forwards;
+  }
+
+  label {
+    font-size: 0.9rem;
   }
 }

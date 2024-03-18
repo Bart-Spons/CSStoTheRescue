@@ -1,0 +1,34 @@
+/* dark / light mode */
+html:has(label:nth-of-type(2) input[type="checkbox"]:checked) {
+  --daynight: light;
+}
+
+html:has(label:nth-of-type(3) input[type="checkbox"]:checked) {
+  --daynight: night;
+}
+
+html:has([name="lightmode"]:checked):has([name="darkmode"]:checked) {
+  --daynight: grey;
+}
+
+@container style(--daynight:light) {
+  body {
+    background-color: white;
+    color: black;
+    --emoji: "🌞";
+  }
+}
+
+@container style(--daynight:night) {
+  body {
+    background-color: black;
+    --emoji: "🌝";
+  }
+}
+
+@container style(--daynight:grey) {
+  body {
+    background-color: grey;
+    --emoji: "🌨️";
+  }
+}
