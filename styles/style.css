@@ -97,8 +97,8 @@ ul {
 
 /* Nesting */
 li {
-  position: absolute;
-  bottom: 0;
+  position: fixed;
+  bottom: 65vh;
   width: 0.4em;
   height: 10em;
   transform-origin: bottom;
@@ -596,7 +596,7 @@ li {
 
 /* container queries */
 
-@container (width < 700px) {
+@media (width < 700px) {
   ul {
     left: 50vw;
     top: 20vh;
@@ -611,5 +611,9 @@ li {
 
   label {
     font-size: 0.9rem;
+  }
+
+  li {
+    right: 50vw;
   }
 }
