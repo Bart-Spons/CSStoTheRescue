@@ -1,5 +1,5 @@
 :root {
-  --rotate-step: 45deg; /* Definieer een stapgrootte voor de rotatie (li) */
+  --rotate-step: 45deg; /* Rotatie li (vuurwerk) */
   --delay-step: 0.1s; /* span */
   --walking: 4s;
   --arrow: 3s;
@@ -22,6 +22,14 @@
   );
   --darkmodeColor: white;
   --darkmodeBackground: black;
+  --lightmodeBackground: white;
+  --titleBackground: linear-gradient(90deg, crimson, blue);
+  --liBefore: repeating-radial-gradient(
+    circle,
+    white 0%,
+    white 50%,
+    transparent 51%
+  );
 }
 
 body {
@@ -38,8 +46,8 @@ body {
   overflow: hidden;
 }
 
+/* titel */
 h1 {
-  /* display: none; */
   font-family: Tilt;
   position: absolute;
   font-size: 5vw;
@@ -47,14 +55,13 @@ h1 {
   width: auto;
   font-variation-settings: "XROT" 45, "YROT" 15;
   font-weight: normal;
-  /* animation: 2s 1s ease-in-out infinite alternate; */
-  /* animation-delay: calc(var(--walking) / 2); */
-  background-image: linear-gradient(90deg, crimson, dodgerblue);
+  background-image: var(--titleBackground);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
+/* font */
 @font-face {
   font-family: "Tilt";
   src: url("../fonts/TiltPrism[XROT,YROT].woff2");
@@ -95,7 +102,7 @@ ul {
   display: none;
 }
 
-/* Nesting */
+/* Nesting from the firework */
 li {
   position: fixed;
   bottom: 65vh;
@@ -113,12 +120,7 @@ li {
     width: 15em;
     height: 15em;
     background-color: transparent;
-    background-image: repeating-radial-gradient(
-      circle,
-      white 0%,
-      white 50%,
-      transparent 51%
-    );
+    background-image: var(--liBefore);
     background-size: 1em 1em;
     border-radius: 100px;
     animation: none;
@@ -134,16 +136,15 @@ li {
     height: 10%;
     border-radius: 10px;
     overflow: hidden;
-    /* animation: vuurwerk 10s infinite ease-in-out; */
   }
 }
 
-/*///////////////*/
-/* label nesting */
-/*///////////////*/
+/*/////////////////////////*/
+/* label nesting & styling */
+/*/////////////////////////*/
 
 label {
-  background-color: white;
+  background-color: var(--lightmodeBackground);
   padding: 1em;
   border-radius: 25%;
   box-shadow: 0 0 0.5em 0.5em;
@@ -156,12 +157,10 @@ label {
   }
 
   &:nth-of-type(2) {
-    /* bottom: 90vh; */
     left: 2rem;
   }
 
   &:nth-of-type(3) {
-    /* bottom: 90vh; */
     left: 10rem;
   }
 
@@ -181,22 +180,18 @@ label {
   }
 }
 
-/*///////////////*/
-/* span nesting  */
-/*///////////////*/
+/*/////////////////////////*/
+/* span nesting en styling */
+/*/////////////////////////*/
 
 span {
   bottom: 6rem;
   left: 5rem;
   position: absolute;
   width: 1em;
-  /* outline: 1px solid red; */
   border-radius: 100%;
   height: 1em;
-  /* animation: moveDiagonal 5s linear forwards; */
-  /* display: none; */
   opacity: 0;
-
   &:nth-of-type(1) {
     background-color: var(--backgroundRed);
   }
@@ -206,13 +201,12 @@ span {
   }
 
   &:nth-of-type(3) {
-    /* background-color: var(--backgroundBlue); */
     background-image: var(--backgroundMix);
     mix-blend-mode: screen;
   }
 }
 
-/* Label kleur veranderen bij input */
+/* Change the label background-color when label is pressed */
 
 html:has(input[name="rood"]:checked) label:nth-of-type(4) {
   background-color: var(--backgroundRed);
@@ -226,9 +220,9 @@ html:has(input[name="mix"]:checked) label:nth-of-type(6) {
   background-image: var(--backgroundMix);
 }
 
-/*///////////////*/
-/* div nesting   */
-/*///////////////*/
+/*////////////////////////*/
+/* div nesting & styling  */
+/*////////////////////////*/
 
 div {
   &:nth-of-type(3) {
@@ -244,7 +238,6 @@ div {
   &:nth-of-type(4) {
     img {
       position: absolute;
-      /* display: none; */
       top: 80vh;
       left: 1vw;
       height: 16vh;
@@ -257,26 +250,26 @@ div {
 /* label nesting  */
 /*///////////////*/
 
-/* als label 1 checked is */
-
+/* If label 1 is checked */
 label:nth-of-type(1):has(input:checked) {
+  /* titel animation */
   & ~ h1 {
     animation: moveTitle 5s forwards;
   }
-
+  /* firework is shown */
   & ~ ul {
     display: block;
   }
-
+  /* gif walks from left to right */
   & ~ div:nth-of-type(3) {
     animation: move 5s;
     display: block;
   }
 
-  & ~ div:nth-of-type(6) {
+  /* & ~ div:nth-of-type(6) {
     display: block;
     animation-delay: var(--block);
-  }
+  } */
 
   & ~ label:nth-of-type(4):has(input:checked) {
     & ~ ul li::before {
@@ -286,6 +279,10 @@ label:nth-of-type(1):has(input:checked) {
     }
     & ~ span:nth-of-type(1) {
       animation: moveDiagonal 5s linear forwards;
+    }
+    & ~ h1 {
+      background-image: none;
+      background-color: var(--backgroundRed);
     }
   }
 
@@ -298,16 +295,25 @@ label:nth-of-type(1):has(input:checked) {
       animation: swing 5s infinite ease-in-out,
         groen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
     }
+    & ~ h1 {
+      background-image: none;
+      background-color: var(--backgroundGreen);
+    }
   }
 
   &
     ~ label:nth-of-type(4):has(input:checked)
-    ~ label:nth-of-type(5):has(input:checked)
-    ~ ul
-    li::before {
-    display: block;
-    animation: swing 5s infinite ease-in-out,
-      roodGroen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+    ~ label:nth-of-type(5):has(input:checked) {
+    & ~ ul li::before {
+      display: block;
+      animation: swing 5s infinite ease-in-out,
+        roodGroen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+    }
+
+    & ~ h1 {
+      background-image: none;
+      background-color: var(--backgroundBlue);
+    }
   }
 
   & ~ section:nth-of-type(1) img {
@@ -324,42 +330,70 @@ label:nth-of-type(1):has(input:checked) {
         kleurverloopStipjes 0.3s calc(var(--walking) + var(--arrow)) infinite
           ease-in-out;
     }
+    /* & ~ h1 {
+      background-image: var(--backgroundMix);
+    } */
   }
 }
 
-label:nth-of-type(6):has(input[type="checkbox"]:checked) ~ div {
+/* label:nth-of-type(6):has(input[type="checkbox"]:checked) ~ div {
   display: block;
-}
+} */
 
 /*///////////////*/
 /* li draaien   */
 /*///////////////*/
 
+li:nth-of-type(1) {
+  --i: 1;
+}
+li:nth-of-type(2) {
+  --i: 2;
+}
+li:nth-of-type(3) {
+  --i: 3;
+}
+li:nth-of-type(4) {
+  --i: 4;
+}
+li:nth-of-type(5) {
+  --i: 5;
+}
+li:nth-of-type(6) {
+  --i: 6;
+}
+li:nth-of-type(7) {
+  --i: 7;
+}
+li:nth-of-type(8) {
+  --i: 8;
+}
+
 li {
-  &:nth-child(1) {
-    transform: rotate(calc(var(--rotate-step) * 0)) translateY(1em);
-  }
+  /* &:nth-child(1) { */
+  transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
+  /* }
   &:nth-child(2) {
-    transform: rotate(calc(var(--rotate-step) * 1)) translateY(1em);
+    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
   }
   &:nth-child(3) {
-    transform: rotate(calc(var(--rotate-step) * 2)) translateY(1em);
+    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
   }
   &:nth-child(4) {
-    transform: rotate(calc(var(--rotate-step) * 3)) translateY(1em);
+    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
   }
   &:nth-child(5) {
-    transform: rotate(calc(var(--rotate-step) * 4)) translateY(1em);
+    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
   }
   &:nth-child(6) {
-    transform: rotate(calc(var(--rotate-step) * 5)) translateY(1em);
+    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
   }
   &:nth-child(7) {
-    transform: rotate(calc(var(--rotate-step) * 6)) translateY(1em);
+    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
   }
   &:nth-child(8) {
-    transform: rotate(calc(var(--rotate-step) * 7)) translateY(1em);
-  }
+    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
+  } */
 }
 
 /* Keyframes */
@@ -396,17 +430,14 @@ li {
   0% {
     transform: translateY(0);
     rotate: 0;
-    /* opacity: 1; */
   }
 
   50% {
     transform: translateY(30vh);
-    /* opacity: 0; */
   }
   100% {
     transform: translateY(0);
     rotate: 360deg;
-    /* opacity: 1; */
   }
 }
 
@@ -564,19 +595,14 @@ li {
 
 @keyframes moveDiagonal {
   from {
-    /* Startpositie: linksonder */
-    transform: translate(0, 0); /* Verticaal volledig onderaan */
+    transform: translate(0, 0);
     opacity: 1;
   }
   85% {
     opacity: 0.5;
   }
   to {
-    /* Eindpositie: rechtsboven */
-    transform: translate(
-      70vw,
-      -70vh
-    ); /* Horizontaal volledig rechts en bovenaan */
+    transform: translate(70vw, -70vh);
     opacity: 0;
   }
 }
@@ -594,8 +620,6 @@ li {
 
 /* responsive */
 
-/* container queries */
-
 @media (width < 700px) {
   ul {
     left: 50vw;
@@ -603,7 +627,6 @@ li {
   }
   h1 {
     top: 5rem;
-    /* animation: moveDiagonalTitel 5s linear forwards; */
   }
   label:nth-of-type(1):has(input:checked) ~ h1 {
     animation: moveDiagonalTitel 5s forwards;

@@ -313,3 +313,31 @@ article:nth-of-type(7) {
 ```
 
 <img src="./images/sterrenDarkMode.png">
+
+### feedback docent
+
+- eigen vuurwerk (pijl)
+- eigen vuurwerk show maken
+- css nesting en style queries
+
+## Week 4
+
+Afgelopen weekend opnieuw begonnen
+
+- veel getest
+- veel kennis opgedaan de afgelopen weken
+- ging er heel snel doorheen
+- door veel proberen dit mooie vuurwerk
+
+Aanpasssingen
+
+- zelf bedienen
+- titel mee veranderen (kleur en positie (roteer))
+- kanon schiet kleurstof af naar de wolk. Ook een pijl gaat erheen. Na de explosie verdwijnt de wolk en is het vuurwerk te zien
+- de 'mix' veranderd heel vaak van kleur tijdens het vuurwerk effect
+- style queries (light / dark mode)
+- heel veel css nesting
+- geen overscroll
+- groen of rood aan en een andere kleur kunnen toevoegen
+- geen pagina refresh nodig om een nieuwe animatie te starten
+- responsive
