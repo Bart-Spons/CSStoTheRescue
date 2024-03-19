@@ -315,8 +315,10 @@ article:nth-of-type(7) {
 <img src="./images/sterrenDarkMode.png">
 
 ### feedback docent
-Aan het einde van de derde week had ik een voortgangsgesprekje met mijn docent. Ik kreeg als feedback dat ik nog aan een aantal dingen moest werken. 
-- Eigen vuurwerk (pijl). 
+
+Aan het einde van de derde week had ik een voortgangsgesprekje met mijn docent. Ik kreeg als feedback dat ik nog aan een aantal dingen moest werken.
+
+- Eigen vuurwerk (pijl).
 - De gebruiker moet interactie/invloed hebben op de vuurwerk show.
 - css nesting en style queries
 
@@ -325,11 +327,12 @@ Aan het einde van de derde week had ik een voortgangsgesprekje met mijn docent. 
 Mijn huidige html en css stond heel erg vol en het leek mij verstandig om nieuwe creaties te maken in een aantal codepen projecten. Deze ben ik vervolgens gaan gebruiken in mijn nieuwe html en css documenten. Ik heb de afgelopen weken heel veel nieuwe kennis opgedaan door te experimenteren met nieuwe css elementen. Het nieuwe idee uitwerken ging dus vrij snel. Door al dat experimenteren heb ik nu een mooi vuurwerk uitgekregen.
 
 ### Codepen bestanden
+
 - <a href="https://codepen.io/LuckyBart/pen/vYMyNJM">Explosie</a>
 - <a href="https://codepen.io/LuckyBart/pen/jORVMjQ">Animaties kiezen</a>
 
-
 ## Aanpasssingen
+
 - Titel mee veranderen (kleur en positie (roteer))
 - Gebruiker kan zelf zijn/haar eigen vuurwerk maken
 - kanon schiet kleurstof af naar de wolk. Ook een pijl gaat erheen. Na de explosie verdwijnt de wolk en is het vuurwerk te zien
@@ -342,9 +345,11 @@ Mijn huidige html en css stond heel erg vol en het leek mij verstandig om nieuwe
 - responsive
 
 ## Titel mee veranderen (kleur en positie (roteer))
-Ik heb een custom font gebruikt voor de titel. Deze heb ik als achtergrond afbeelding een gradient gegeven en als de gebruiker kiest voor een bepaalde vuurwerk kleur dan veranderd de kleur van deze titel. 
+
+Ik heb een custom font gebruikt voor de titel. Deze heb ik als achtergrond afbeelding een gradient gegeven en als de gebruiker kiest voor een bepaalde vuurwerk kleur dan veranderd de kleur van deze titel.
 
 ### De code
+
 ```css
 h1 {
   font-family: Tilt;
@@ -392,6 +397,7 @@ label:nth-of-type(1):has(input:checked) {
 <img src="./images/titelReadme.png"> <hr>
 
 ## Css nesting
+
 Tijdens dit project heb ik voor het eerst gebruik gemaakt van 'Nesting'. Nesting lijkt op SCSS of SASS omdat je binnen ene elmenten andere elementen kunt zetten om zo code te besparen. Dit was voor mij heel handig want alle interactie die mogelijk is, is gelinkt aan het start label.
 
 ### De code
@@ -420,8 +426,9 @@ label:nth-of-type(1):has(input:checked) {
   & ~ label:nth-of-type(4):has(input:checked) {
     & ~ ul li::before {
       display: block;
-      animation: swing 5s infinite ease-in-out,
-        rood 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+      animation: swing 5s infinite ease-in-out, rood 1s calc(
+            var(--walking) + var(--arrow)
+          ) infinite ease-in-out;
     }
     /* move the red dot */
     & ~ span:nth-of-type(1) {
@@ -441,8 +448,9 @@ label:nth-of-type(1):has(input:checked) {
     /* Animate the firework */
     & ~ ul li::before {
       display: block;
-      animation: swing 5s infinite ease-in-out,
-        groen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+      animation: swing 5s infinite ease-in-out, groen 1s calc(
+            var(--walking) + var(--arrow)
+          ) infinite ease-in-out;
     }
     /* change title to green */
     & ~ h1 {
@@ -457,8 +465,9 @@ label:nth-of-type(1):has(input:checked) {
     ~ label:nth-of-type(5):has(input:checked) {
     & ~ ul li::before {
       display: block;
-      animation: swing 5s infinite ease-in-out,
-        roodGroen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+      animation: swing 5s infinite ease-in-out, roodGroen 1s calc(
+            var(--walking) + var(--arrow)
+          ) infinite ease-in-out;
     }
     /* change title to the mix color */
     & ~ h1 {
@@ -479,16 +488,17 @@ label:nth-of-type(1):has(input:checked) {
     /* Show the firework with all the colors who constainly change */
     & ~ ul li::before {
       display: block;
-      animation: swing 5s infinite ease-in-out,
-        kleurverloopStipjes 0.3s calc(var(--walking) + var(--arrow)) infinite
-          ease-in-out;
+      animation: swing 5s infinite ease-in-out, kleurverloopStipjes 0.3s calc(
+            var(--walking) + var(--arrow)
+          ) infinite ease-in-out;
     }
   }
 }
 ```
 
 ## style queries (light / dark mode)
-Ook heb ik style queries toegepast op de light/dark mode. 
+
+Ook heb ik style queries toegepast op de light/dark mode.
 
 ```css
 /* dark / light mode */
@@ -527,19 +537,130 @@ html:has([name="lightmode"]:checked):has([name="darkmode"]:checked) {
     --emoji: "🌨️";
   }
 }
-
 ```
 
 ## Gebruiker kan zelf zijn/haar eigen vuurwerk maken
 
-## kanon schiet kleurstof af naar de wolk. Ook een pijl gaat erheen. Na de explosie verdwijnt de wolk en is het vuurwerk te zien
+Ik heb een aantal labels aangemaakt en deze gelinkt aan een bepaald vuurwerk. Vanuit het control panel kan de gebruiker kiezen welke kleur vuurwerk hij/zij kan zien. Als de gebruiker vervolgens op 'start' klikt dan begint deze animatie te lopen. De gekozen kleurstof wordt dan afgeschoten naar de wolk. Een mannetje loopt door het scherm en schiet een vuurwerk pijl af. Als de kleurstof en pijl beide in de wolk zijn ontploft deze en is er vuurwerk te zien.
+
+Mijn eerste label functioneerd als start knop. Ik heb alle andere labels met bijbehorende li input hierin genest. Hieronder is mijn code te zien.
+
+### HTML
+
+```html
+<!-- 1. Start the firework -->
+<label><input type="checkbox" />Start</label>
+
+<!-- 2. lightmode -->
+<label> <input type="checkbox" name="lightmode" />Light mode! </label>
+<!-- 3. dark mode -->
+<label> <input type="checkbox" name="darkmode" />Dark mode! </label>
+
+<!-- 4. red firework -->
+<label><input type="checkbox" name="rood" />Red</label>
+
+<!-- 5. green firework -->
+<label><input type="checkbox" name="groen" />Green</label>
+
+<!-- 6. mix -->
+<label> <input type="checkbox" name="mix" />Mix</label>
+```
+
+### CSS
+
+```css
+/* If label 1 is checked */
+label:nth-of-type(1):has(input:checked) {
+  /* titel animation */
+  & ~ h1 {
+    animation: moveTitle 5s forwards;
+  }
+  /* firework is shown */
+  & ~ ul {
+    display: block;
+  }
+  /* gif walks from left to right */
+  & ~ div:nth-of-type(3) {
+    animation: move 5s;
+    display: block;
+  }
+  /* Press on the red label */
+  & ~ label:nth-of-type(4):has(input:checked) {
+    & ~ ul li::before {
+      display: block;
+      animation: swing 5s infinite ease-in-out,
+        rood 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+    }
+    /* move the red dot */
+    & ~ span:nth-of-type(1) {
+      animation: moveDiagonal 5s linear forwards;
+    }
+    /* change title to red */
+    & ~ h1 {
+      background-image: none;
+      background-color: var(--backgroundRed);
+    }
+  }
+```
+
+## Groen of rood aan en een andere kleur kunnen toevoegen
+
+Het kanon schiet bijvoorbeeld de groene kleurstof af naar de wolk. Ook een pijl gaat erheen. Na de explosie verdwijnt de wolk en is het vuurwerk te zien. Als de gebruiker vervolgens de rode vloeistof ook schiet dan gaat het vuurwerk elke seconden veranderen van rood naar groen.
 
 <img src="./images/groenRood.png">
 
-## de 'mix' veranderd heel vaak van kleur tijdens het vuurwerk effect
+## De 'mix' veranderd heel vaak van kleur tijdens het vuurwerk effect
+
+Als de gebruiker voor de optie mix kiest. Dan wordt een gekleurde bal afgeschoten naar de wolk. Vervolgens veranderd het vuurwerk heel vaak van kleur. Dit heb ik gedaan door een extra keyframe toe te voegen aan de animatie. De code is hieronder te zien. Ook zorgt deze keyframe ervoor dat er heel veel puntjes te zien zijn in plaats van een streep per li element.
+
+```css
+@keyframes kleurverloopStipjes {
+  0%,
+  100% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      var(--backgroundRed) 91%,
+      var(--backgroundRed) 100%
+    );
+  }
+  75% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      var(--backgroundBlue) 91%,
+      var(--backgroundBlue) 100%
+    );
+  }
+  50% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      var(--backgroundGreen) 91%,
+      var(--backgroundGreen) 100%
+    );
+  }
+  25% {
+    background-image: repeating-radial-gradient(
+      circle at center,
+      transparent 0%,
+      transparent 90%,
+      var(--backgroundPurple) 91%,
+      var(--backgroundPurple) 100%
+    );
+  }
+}
+```
 
 <img src="./images/alle4.png">
 
-## groen of rood aan en een andere kleur kunnen toevoegen
-## geen pagina refresh nodig om een nieuwe animatie te starten
-## responsive
+## Geen pagina refresh nodig om een nieuwe animatie te starten
+Bij mijn vorige versies moest de gebruiker telkens de pagina opnieuw laden om de animatie opniew af te spelen. Ik heb nu een 'start' knop gemaakt die de animatie aan en uit kan zetten zonder hier de pagina voor te hoeven herladen. 
+
+## Responsive
+De pagina is ook responsive. Ik heb bij veel elementen gebruik gemaakt van 'vh' en 'vw'. Op een width voor en mobile device gaat het vuurwerk in het midden van de pagina staan. De titel verplaatst bij de start van de animatie naar rechtsonderin.
+
+<img src="./images/mobile.png">
