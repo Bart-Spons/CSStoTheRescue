@@ -315,24 +315,23 @@ article:nth-of-type(7) {
 <img src="./images/sterrenDarkMode.png">
 
 ### feedback docent
-
-- eigen vuurwerk (pijl)
-- eigen vuurwerk show maken
+Aan het einde van de derde week had ik een voortgangsgesprekje met mijn docent. Ik kreeg als feedback dat ik nog aan een aantal dingen moest werken. 
+- Eigen vuurwerk (pijl). 
+- De gebruiker moet interactie/invloed hebben op de vuurwerk show.
 - css nesting en style queries
 
 ## Week 4
 
-Afgelopen weekend opnieuw begonnen
+Mijn huidige html en css stond heel erg vol en het leek mij verstandig om nieuwe creaties te maken in een aantal codepen projecten. Deze ben ik vervolgens gaan gebruiken in mijn nieuwe html en css documenten. Ik heb de afgelopen weken heel veel nieuwe kennis opgedaan door te experimenteren met nieuwe css elementen. Het nieuwe idee uitwerken ging dus vrij snel. Door al dat experimenteren heb ik nu een mooi vuurwerk uitgekregen.
 
-- veel getest
-- veel kennis opgedaan de afgelopen weken
-- ging er heel snel doorheen
-- door veel proberen dit mooie vuurwerk
+### Codepen bestanden
+- <a href="https://codepen.io/LuckyBart/pen/vYMyNJM">Explosie</a>
+- <a href="https://codepen.io/LuckyBart/pen/jORVMjQ">Animaties kiezen</a>
 
-Aanpasssingen
 
-- zelf bedienen
-- titel mee veranderen (kleur en positie (roteer))
+## Aanpasssingen
+- Titel mee veranderen (kleur en positie (roteer))
+- Gebruiker kan zelf zijn/haar eigen vuurwerk maken
 - kanon schiet kleurstof af naar de wolk. Ook een pijl gaat erheen. Na de explosie verdwijnt de wolk en is het vuurwerk te zien
 - de 'mix' veranderd heel vaak van kleur tijdens het vuurwerk effect
 - style queries (light / dark mode)
@@ -341,3 +340,206 @@ Aanpasssingen
 - groen of rood aan en een andere kleur kunnen toevoegen
 - geen pagina refresh nodig om een nieuwe animatie te starten
 - responsive
+
+## Titel mee veranderen (kleur en positie (roteer))
+Ik heb een custom font gebruikt voor de titel. Deze heb ik als achtergrond afbeelding een gradient gegeven en als de gebruiker kiest voor een bepaalde vuurwerk kleur dan veranderd de kleur van deze titel. 
+
+### De code
+```css
+h1 {
+  font-family: Tilt;
+  position: absolute;
+  font-size: 5vw;
+  top: 4rem;
+  width: auto;
+  font-variation-settings: "XROT" 45, "YROT" 15;
+  font-weight: normal;
+  background-image: var(--titleBackground);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* font */
+@font-face {
+  font-family: "Tilt";
+  src: url("../fonts/TiltPrism[XROT,YROT].woff2");
+}
+
+/* If label 1 is checked */
+label:nth-of-type(1):has(input:checked) {
+  /* titel animation */
+  & ~ h1 {
+    animation: moveTitle 5s forwards;
+  }
+
+  @keyframes moveTitle {
+  0% {
+    transform: translateY(0);
+    rotate: 0;
+  }
+
+  50% {
+    transform: translateY(30vh);
+  }
+  100% {
+    transform: translateY(0);
+    rotate: 360deg;
+  }
+}
+```
+
+<img src="./images/titelReadme.png"> <hr>
+
+## Css nesting
+Tijdens dit project heb ik voor het eerst gebruik gemaakt van 'Nesting'. Nesting lijkt op SCSS of SASS omdat je binnen ene elmenten andere elementen kunt zetten om zo code te besparen. Dit was voor mij heel handig want alle interactie die mogelijk is, is gelinkt aan het start label.
+
+### De code
+
+```css
+/*///////////////*/
+/* label nesting  */
+/*///////////////*/
+
+/* If label 1 is checked */
+label:nth-of-type(1):has(input:checked) {
+  /* titel animation */
+  & ~ h1 {
+    animation: moveTitle 5s forwards;
+  }
+  /* firework is shown */
+  & ~ ul {
+    display: block;
+  }
+  /* gif walks from left to right */
+  & ~ div:nth-of-type(3) {
+    animation: move 5s;
+    display: block;
+  }
+  /* Press on the red label */
+  & ~ label:nth-of-type(4):has(input:checked) {
+    & ~ ul li::before {
+      display: block;
+      animation: swing 5s infinite ease-in-out,
+        rood 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+    }
+    /* move the red dot */
+    & ~ span:nth-of-type(1) {
+      animation: moveDiagonal 5s linear forwards;
+    }
+    /* change title to red */
+    & ~ h1 {
+      background-image: none;
+      background-color: var(--backgroundRed);
+    }
+  }
+  /* Press on the green label */
+  & ~ label:nth-of-type(5):has(input:checked) {
+    & ~ span:nth-of-type(2) {
+      animation: moveDiagonal 5s linear forwards;
+    }
+    /* Animate the firework */
+    & ~ ul li::before {
+      display: block;
+      animation: swing 5s infinite ease-in-out,
+        groen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+    }
+    /* change title to green */
+    & ~ h1 {
+      background-image: none;
+      background-color: var(--backgroundGreen);
+    }
+  }
+
+  /* Press on the green and the red label */
+  &
+    ~ label:nth-of-type(4):has(input:checked)
+    ~ label:nth-of-type(5):has(input:checked) {
+    & ~ ul li::before {
+      display: block;
+      animation: swing 5s infinite ease-in-out,
+        roodGroen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
+    }
+    /* change title to the mix color */
+    & ~ h1 {
+      background-image: none;
+      background-color: var(--backgroundBlue);
+    }
+  }
+  /* arrow goes up */
+  & ~ section:nth-of-type(1) img {
+    animation: moveUp var(--arrow);
+    animation-delay: var(--walking);
+  }
+  /* press on the mix label */
+  & ~ label:nth-of-type(6):has(input:checked) {
+    & ~ span:nth-of-type(3) {
+      animation: moveDiagonal 5s linear forwards;
+    }
+    /* Show the firework with all the colors who constainly change */
+    & ~ ul li::before {
+      display: block;
+      animation: swing 5s infinite ease-in-out,
+        kleurverloopStipjes 0.3s calc(var(--walking) + var(--arrow)) infinite
+          ease-in-out;
+    }
+  }
+}
+```
+
+## style queries (light / dark mode)
+Ook heb ik style queries toegepast op de light/dark mode. 
+
+```css
+/* dark / light mode */
+html:has(label:nth-of-type(2) input[type="checkbox"]:checked) {
+  --daynight: light;
+}
+
+html:has(label:nth-of-type(3) input[type="checkbox"]:checked) {
+  --daynight: night;
+}
+
+html:has([name="lightmode"]:checked):has([name="darkmode"]:checked) {
+  --daynight: grey;
+}
+
+/* style queries */
+
+@container style(--daynight:light) {
+  body {
+    background-color: white;
+    color: black;
+    --emoji: "🌞";
+  }
+}
+
+@container style(--daynight:night) {
+  body {
+    background-color: black;
+    --emoji: "🌝";
+  }
+}
+
+@container style(--daynight:grey) {
+  body {
+    background-color: grey;
+    --emoji: "🌨️";
+  }
+}
+
+```
+
+## Gebruiker kan zelf zijn/haar eigen vuurwerk maken
+
+## kanon schiet kleurstof af naar de wolk. Ook een pijl gaat erheen. Na de explosie verdwijnt de wolk en is het vuurwerk te zien
+
+<img src="./images/groenRood.png">
+
+## de 'mix' veranderd heel vaak van kleur tijdens het vuurwerk effect
+
+<img src="./images/alle4.png">
+
+## groen of rood aan en een andere kleur kunnen toevoegen
+## geen pagina refresh nodig om een nieuwe animatie te starten
+## responsive

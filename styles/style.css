@@ -111,6 +111,7 @@ li {
   transform-origin: bottom;
   transform-origin: 50% 100%;
 
+  /* firework explosion */
   &::before {
     content: "";
     position: absolute;
@@ -126,17 +127,17 @@ li {
     animation: none;
     display: none;
   }
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform-origin: bottom;
-    width: 0.4em;
-    height: 10%;
-    border-radius: 10px;
-    overflow: hidden;
-  }
+    /* &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform-origin: bottom;
+      width: 0.4em;
+      height: 10%;
+      border-radius: 10px;
+      overflow: hidden;
+    } */
 }
 
 /*/////////////////////////*/
@@ -151,29 +152,35 @@ label {
   margin-right: 1rem;
   position: absolute;
 
+  /* start button */
   &:nth-of-type(1) {
     bottom: 20vh;
     left: 2vw;
   }
 
+  /* light mode button */
   &:nth-of-type(2) {
     left: 2rem;
   }
 
+  /* dark mode button */
   &:nth-of-type(3) {
     left: 10rem;
   }
 
+  /* red button */
   &:nth-of-type(4) {
     bottom: 30vh;
     left: 2vw;
   }
 
+  /* green button */
   &:nth-of-type(5) {
     bottom: 30vh;
     left: 6rem;
   }
 
+  /* mixed button */
   &:nth-of-type(6) {
     bottom: 40vh;
     left: 2vw;
@@ -184,6 +191,7 @@ label {
 /* span nesting en styling */
 /*/////////////////////////*/
 
+/* flying dot to the cloud */
 span {
   bottom: 6rem;
   left: 5rem;
@@ -193,14 +201,17 @@ span {
   height: 1em;
   opacity: 0;
   &:nth-of-type(1) {
+    /* red dot */
     background-color: var(--backgroundRed);
   }
 
   &:nth-of-type(2) {
+    /* green dot */
     background-color: var(--backgroundGreen);
   }
 
   &:nth-of-type(3) {
+    /* mixed dot */
     background-image: var(--backgroundMix);
     mix-blend-mode: screen;
   }
@@ -208,14 +219,17 @@ span {
 
 /* Change the label background-color when label is pressed */
 
+/* make the background red */
 html:has(input[name="rood"]:checked) label:nth-of-type(4) {
   background-color: var(--backgroundRed);
 }
 
+/* make the background green */
 html:has(input[name="groen"]:checked) label:nth-of-type(5) {
   background-color: var(--backgroundGreen);
 }
 
+/* make the background mixed */
 html:has(input[name="mix"]:checked) label:nth-of-type(6) {
   background-image: var(--backgroundMix);
 }
@@ -224,6 +238,7 @@ html:has(input[name="mix"]:checked) label:nth-of-type(6) {
 /* div nesting & styling  */
 /*////////////////////////*/
 
+/* walking gif styling */
 div {
   &:nth-of-type(3) {
     position: absolute;
@@ -246,6 +261,8 @@ div {
   }
 }
 
+
+
 /*///////////////*/
 /* label nesting  */
 /*///////////////*/
@@ -265,42 +282,42 @@ label:nth-of-type(1):has(input:checked) {
     animation: move 5s;
     display: block;
   }
-
-  /* & ~ div:nth-of-type(6) {
-    display: block;
-    animation-delay: var(--block);
-  } */
-
+  /* Press on the red label */
   & ~ label:nth-of-type(4):has(input:checked) {
     & ~ ul li::before {
       display: block;
       animation: swing 5s infinite ease-in-out,
         rood 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
     }
+    /* move the red dot */
     & ~ span:nth-of-type(1) {
       animation: moveDiagonal 5s linear forwards;
     }
+    /* change title to red */
     & ~ h1 {
       background-image: none;
       background-color: var(--backgroundRed);
     }
   }
-
+  /* Press on the green label */
   & ~ label:nth-of-type(5):has(input:checked) {
     & ~ span:nth-of-type(2) {
       animation: moveDiagonal 5s linear forwards;
     }
+    /* Animate the firework */
     & ~ ul li::before {
       display: block;
       animation: swing 5s infinite ease-in-out,
         groen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
     }
+    /* change title to green */
     & ~ h1 {
       background-image: none;
       background-color: var(--backgroundGreen);
     }
   }
 
+  /* Press on the green and the red label */
   &
     ~ label:nth-of-type(4):has(input:checked)
     ~ label:nth-of-type(5):has(input:checked) {
@@ -309,41 +326,37 @@ label:nth-of-type(1):has(input:checked) {
       animation: swing 5s infinite ease-in-out,
         roodGroen 1s calc(var(--walking) + var(--arrow)) infinite ease-in-out;
     }
-
+    /* change title to the mix color */
     & ~ h1 {
       background-image: none;
       background-color: var(--backgroundBlue);
     }
   }
-
+  /* arrow goes up */
   & ~ section:nth-of-type(1) img {
     animation: moveUp var(--arrow);
     animation-delay: var(--walking);
   }
+  /* press on the mix label */
   & ~ label:nth-of-type(6):has(input:checked) {
     & ~ span:nth-of-type(3) {
       animation: moveDiagonal 5s linear forwards;
     }
+    /* Show the firework with all the colors who constainly change */
     & ~ ul li::before {
       display: block;
       animation: swing 5s infinite ease-in-out,
         kleurverloopStipjes 0.3s calc(var(--walking) + var(--arrow)) infinite
           ease-in-out;
     }
-    /* & ~ h1 {
-      background-image: var(--backgroundMix);
-    } */
   }
 }
 
-/* label:nth-of-type(6):has(input[type="checkbox"]:checked) ~ div {
-  display: block;
-} */
+/*////////////////////*/
+/* Make the li turn   */
+/*////////////////////*/
 
-/*///////////////*/
-/* li draaien   */
-/*///////////////*/
-
+/* create an index for each li element */
 li:nth-of-type(1) {
   --i: 1;
 }
@@ -369,31 +382,9 @@ li:nth-of-type(8) {
   --i: 8;
 }
 
+/* make the li dymanic and use the index to calculate this */
 li {
-  /* &:nth-child(1) { */
   transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
-  /* }
-  &:nth-child(2) {
-    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
-  }
-  &:nth-child(3) {
-    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
-  }
-  &:nth-child(4) {
-    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
-  }
-  &:nth-child(5) {
-    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
-  }
-  &:nth-child(6) {
-    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
-  }
-  &:nth-child(7) {
-    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
-  }
-  &:nth-child(8) {
-    transform: rotate(calc(var(--rotate-step) * var(--i))) translateY(1em);
-  } */
 }
 
 /* Keyframes */
@@ -438,17 +429,6 @@ li {
   100% {
     transform: translateY(0);
     rotate: 360deg;
-  }
-}
-
-@keyframes explode {
-  0% {
-    opacity: 1;
-    transform: scale(0.5);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(2) translateX(var(--x)) translateY(var(--y));
   }
 }
 
@@ -565,31 +545,6 @@ li {
   100% {
     transform: rotate(-120deg);
     /* animation-delay: 2s; */
-  }
-}
-
-@keyframes vuurwerk {
-  0% {
-    top: 100%;
-  }
-  33%,
-  100% {
-    top: -30%;
-  }
-}
-
-@keyframes sparkles {
-  0% {
-    top: 90%;
-    opacity: 1;
-  }
-  80% {
-    opacity: 0.5;
-  }
-  100% {
-    top: 30%;
-    opacity: 0;
-    filter: blur(10px);
   }
 }
 
